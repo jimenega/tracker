@@ -13,12 +13,17 @@ public final class Util {
         return false;
     }
 
-    static Command.RESERVED isCommand(String input) {
-        //if (input.get(0).equalsIgnoreCase("exit")) new Exit().execute();
+    static boolean isCommand(String input) {
+        if (contains(input.toLowerCase()))
+            return true;
+        else return false;
+    }
+
+    /*static Command.RESERVED isCommand(String input) {
         if (contains(input.toLowerCase()))
             return Command.RESERVED.valueOf(input.toLowerCase());
         else return null;
-    }
+    }*/
 
     static boolean inputChecks(List<String> input) {
         if (input.get(0).isBlank()) {
@@ -29,13 +34,13 @@ public final class Util {
     }
 
     static boolean errorChecks(List<String> input) {
-        if (isCommand(input.get(0)) == null) {
+        if (!isCommand(input.get(0))) {
             Message.unknownCommand_M();
             return true;
         }
         else return false;
     }
-
+//todo: maybe commandChecks could be combined in errorChecks ??
     static boolean commandChecks(List<String> input) {
         String command = input.get(0).toLowerCase();
         switch (command) {
@@ -59,7 +64,7 @@ public final class Util {
         }
         return true;
     }
-
+//todo: experiment with removing statusConsoleInput ??? maybe
     static void verifyConsoleInput(List<String> input) {
         int statusConsoleInput = 0;
         if(inputChecks(input)) {statusConsoleInput = -1;}
