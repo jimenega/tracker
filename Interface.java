@@ -16,7 +16,6 @@ public class Interface {
             reserved.add(String.valueOf(c));
         }
     }
-
     boolean getInput() {
         normalized.clear();
         rawInput = Arrays.asList(scanner.nextLine().split("\\s+"));
@@ -33,8 +32,7 @@ public class Interface {
         return true;
     }
     void checkInput() {
-        boolean isCommand = false;
-
+        //boolean isCommand;
         /*for(String n : normalized) {
             for (Command.RESERVED c : Command.RESERVED.values()) {
                 //todo: try - if(RESERVED.values contains s
@@ -53,9 +51,9 @@ public class Interface {
             reserved.add(String.valueOf(c));
         }*/
 
-        boolean b = new HashSet<>(reserved).containsAll(normalized);
+        /*boolean b = new HashSet<>(reserved).containsAll(normalized);
         System.out.println("reserved: " + reserved + " normalized " + normalized + " b: " + b);
-        if(b) isCommand = true;
+        if(b) isCommand = true;*/
 
         /*for(String n : normalized) {
             for (Command.RESERVED c : Command.RESERVED.values()) {
@@ -68,6 +66,7 @@ public class Interface {
             }
             if(!isCommand) break;
         }*/
+        boolean isCommand = new HashSet<>(reserved).containsAll(normalized);
 
         if (isCommand) {
             String command = normalized.get(0).toLowerCase();
