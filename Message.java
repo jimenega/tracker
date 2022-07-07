@@ -26,7 +26,6 @@ public final class Message {
     }
 
     static void printStatus() {  //for testing only
-        System.out.println("statusConsoleInput: " + Interface.statusConsoleInput);
         System.out.println("command Level: " + Interface.commandLevel);
         System.out.println("active command: " + Interface.activeCommand);
     }
