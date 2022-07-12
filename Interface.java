@@ -40,7 +40,18 @@ public class Interface {
                     activeCommand = Command.RESERVED.exit;
                     new Exit().execute();
                     break;
+                case "back" :
+                    Interface.commandLevel = 0;
+                    Interface.activeCommand = Command.RESERVED.back;
+                    new Back().execute();
+                    break;
+                case "add" :
+                    Interface.commandLevel = 1;
+                    Interface.activeCommand = Command.RESERVED.back;
+                    new Add().execute();
+                    break;
             }
+            Message.printStatus();
         }
         else Message.unknownCommand_M();
     }
@@ -58,3 +69,22 @@ public class Interface {
         }
     }
 }
+
+/*
+switch (command) {
+        case "exit" :
+        Interface.commandLevel = 0;
+        Interface.activeCommand = Command.RESERVED.exit;
+        new Exit().execute();
+        break;
+        case "back" :
+        Interface.commandLevel = 0;
+        Interface.activeCommand = Command.RESERVED.back;
+        new Back().execute();
+        break;
+        case "add" :
+        Interface.commandLevel = 0;
+        Interface.activeCommand = Command.RESERVED.back;
+        new Add().execute();
+        break;
+        }*/
