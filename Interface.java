@@ -8,7 +8,6 @@ public class Interface {
     Queue<String> rawQueue = new LinkedList<>();
     List<String> normalized = new ArrayList<>();
     List<String> reserved = new ArrayList<>();
-
     Interface() {}
     void setUp() {
         //Create list reserved from RESERVED
@@ -32,42 +31,7 @@ public class Interface {
         return true;
     }
     void checkInput() {
-        //boolean isCommand;
-        /*for(String n : normalized) {
-            for (Command.RESERVED c : Command.RESERVED.values()) {
-                //todo: try - if(RESERVED.values contains s
-                if (n.toLowerCase().equals(c.name())) {
-                    isCommand = true;
-                } else {
-                    isCommand = false;
-                    break;
-                }
-            }
-            if(!isCommand) break;
-        }*/
-
-       /* List<String> reserved = new ArrayList<>();
-        for (Command.RESERVED c : Command.RESERVED.values()) {
-            reserved.add(String.valueOf(c));
-        }*/
-
-        /*boolean b = new HashSet<>(reserved).containsAll(normalized);
-        System.out.println("reserved: " + reserved + " normalized " + normalized + " b: " + b);
-        if(b) isCommand = true;*/
-
-        /*for(String n : normalized) {
-            for (Command.RESERVED c : Command.RESERVED.values()) {
-                if (n.toLowerCase().equals(c.name())) {
-                    isCommand = true;
-                } else {
-                    isCommand = false;
-                    break;
-                }
-            }
-            if(!isCommand) break;
-        }*/
         boolean isCommand = new HashSet<>(reserved).containsAll(normalized);
-
         if (isCommand) {
             String command = normalized.get(0).toLowerCase();
             switch (command) {
