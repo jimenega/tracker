@@ -33,8 +33,14 @@ public class Interface {
     void checkInput() {
         boolean isCommand = new HashSet<>(reserved).containsAll(normalized);
         if (isCommand) {
-            String command = normalized.get(0).toLowerCase();
-            switch (command) {
+            String command0 = normalized.get(0).toLowerCase();
+            String command1 = null;
+            if(normalized.size() > 1) {command1 = normalized.get(1).toLowerCase();}  //todo: new line
+            switch (command0) {
+                case "students" :
+                case "points" :
+                    Message.unknownCommand_M();
+                    break;
                 case "exit" :
                     commandLevel = 0;
                     activeCommand = Command.RESERVED.exit;
@@ -46,10 +52,18 @@ public class Interface {
                     new Back().execute();
                     break;
                 case "add" :
-                    Interface.commandLevel = 1;
-                    Interface.activeCommand = Command.RESERVED.back;
-                    new Add().execute();
-                    break;
+                    if(command1 == null) {
+                        Message.unknownCommand_M();
+                        break;
+                    }
+                    switch(command1) {
+                        case "students":
+                        case "points" :
+                            Interface.commandLevel = 1;
+                            Interface.activeCommand = Command.RESERVED.back;
+                            new Add().control(command1);
+                            break;
+                    }
             }
             Message.printStatus();
         }
@@ -69,22 +83,3 @@ public class Interface {
         }
     }
 }
-
-/*
-switch (command) {
-        case "exit" :
-        Interface.commandLevel = 0;
-        Interface.activeCommand = Command.RESERVED.exit;
-        new Exit().execute();
-        break;
-        case "back" :
-        Interface.commandLevel = 0;
-        Interface.activeCommand = Command.RESERVED.back;
-        new Back().execute();
-        break;
-        case "add" :
-        Interface.commandLevel = 0;
-        Interface.activeCommand = Command.RESERVED.back;
-        new Add().execute();
-        break;
-        }*/
