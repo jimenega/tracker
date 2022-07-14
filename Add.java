@@ -20,6 +20,11 @@ public class Add implements Command{
 
     void studentsCtrl() {
         System.out.println("Enter student credentials or 'back' to return");
+        //todo: add new class Dialog - box to handle students.
+        //      Do the same for points
+        //      Then, add class Patterns
+        //      to check student data using match/regex.
+        //      Consider a class Store for future data storage/database.
     }
 
     void pointsCtrl() {
