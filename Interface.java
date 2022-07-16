@@ -3,7 +3,7 @@ import java.util.*;
 public class Interface {
     static Command.RESERVED activeCommand = null;  //Last entered console command
     static int commandLevel = 0;
-    Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
     List<String> rawInput;
     Queue<String> rawQueue = new LinkedList<>();
     List<String> normalized = new ArrayList<>();
@@ -15,7 +15,7 @@ public class Interface {
             reserved.add(String.valueOf(c));
         }
     }
-    boolean getInput() {
+    boolean isInput() {
         normalized.clear();
         rawInput = Arrays.asList(scanner.nextLine().split("\\s+"));
         for(String in : rawInput) {
@@ -35,18 +35,28 @@ public class Interface {
         if (isCommand) {
             String command0 = normalized.get(0).toLowerCase();
             String command1 = null;
-            if(normalized.size() > 1) command1 = normalized.get(1).toLowerCase();
+            if(normalized.size() == 2) command1 = normalized.get(1).toLowerCase();
+            //if(normalized.size() > 2) command0 = "input_error";
+
             switch (command0) {
                 case "students" :
                 case "points" :
                     Message.unknownCommand_M();
                     break;
                 case "exit" :
+                    if(normalized.size() > 1) {
+                        Message.unknownCommand_M();
+                        break;
+                    }
                     commandLevel = 0;
                     activeCommand = Command.RESERVED.exit;
                     new Exit().execute();
                     break;
                 case "back" :
+                    if(normalized.size() > 1) {
+                        Message.unknownCommand_M();
+                        break;
+                    }
                     Interface.commandLevel = 0;
                     Interface.activeCommand = Command.RESERVED.back;
                     new Back().execute();
@@ -58,28 +68,35 @@ public class Interface {
                     }
                     switch(command1) {
                         case "students":
+                            Interface.commandLevel = 1;
+                            Interface.activeCommand = Command.RESERVED.students;
+                            new Add().control(command1);
+                            break;
                         case "points" :
                             Interface.commandLevel = 1;
-                            Interface.activeCommand = Command.RESERVED.back;
+                            Interface.activeCommand = Command.RESERVED.points;
                             new Add().control(command1);
                             break;
                     }
+                /*case "input_error" :
+                    Message.unknownCommand_M();
+                    break;*/
             }
-            Message.printStatus();
+            //Message.printStatus();
         }
         else Message.unknownCommand_M();
     }
     void verifyConsoleInput() {
-        if(getInput()) checkInput();
+        if(isInput()) checkInput();
     }
     void Console() {
         setUp();
         Message.printTitle_M();
         while (Main.trackerON) {
             verifyConsoleInput();
-            while (commandLevel > 0) {
-                verifyConsoleInput();
-            }
+            //while (commandLevel > 0) {
+            //    verifyConsoleInput();
+            //}
         }
     }
 }
