@@ -11,7 +11,7 @@ public class Dialog {
       int nameCount = 0;
       System.out.println("Enter student credentials or 'back' to return");
       while (dialogOpen) {
-         List<String> rawInput = Arrays.asList(scanner.nextLine().split("\\s+"));  //todo: check raw input at this point
+         List<String> rawInput = Arrays.asList(scanner.nextLine().split("\\s+"));
          if(rawInput.get(0).equalsIgnoreCase("back") && (rawInput.size() == 1)) {
             dialogOpen = false;
             System.out.printf("Total %d students have been added\n", nameCount);
@@ -20,7 +20,7 @@ public class Dialog {
          }  // else validate input
          System.out.println(rawInput);  //tmp message
          nameCount++;
-         System.out.println("The student has been added.");  //todo: if all checks out
+         System.out.println("The student has been added.");
       }
    }
 }
