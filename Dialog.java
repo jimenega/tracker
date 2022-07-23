@@ -17,11 +17,12 @@ public class Dialog {
             System.out.printf("Total %d students have been added\n", nameCount);
             new Back();
             break;
-         }  // else validate input
-         //System.out.println(rawInput);  //tmp message
-         new Validate(rawInput);
-         nameCount++;
-         System.out.println("The student has been added.");
+         }  else {
+            if (new Validate(rawInput).run()) {
+               nameCount++;
+               System.out.println("The student has been added.");
+            }
+         }
       }
    }
 }
