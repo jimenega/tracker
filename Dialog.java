@@ -12,6 +12,10 @@ public class Dialog {
       System.out.println("Enter student credentials or 'back' to return");
       while (true) {
          List<String> rawInput = Arrays.asList(scanner.nextLine().split("\\s+"));
+         if(rawInput.isEmpty()) {
+            Message.student_dialoge1_M();
+            continue;  //fixme - this is in testing
+         }
          if(rawInput.get(0).equalsIgnoreCase("back") && (rawInput.size() == 1)) {
             //dialogOpen = false;
             System.out.printf("Total %d students have been added\n", nameCount);

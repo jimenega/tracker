@@ -13,34 +13,36 @@ public class Validate {
         this.rawInput = rawInput;
         //assign();
     }
+    private void checkCredential(List<String> rawCopy, int inputErrorCode) {
+        System.out.println("Input error code: " + inputErrorCode);
+    }
     boolean run() {
-        if(inputErrorChecks()) {
+        int inputErrorCode = inputErrorChecks();
+        if(inputErrorCode == 0) {
             assign();
             return true;
         } else {
             List<String> rawCopy = new ArrayList<>(this.rawInput);
-            checkCredential(rawCopy);
+            checkCredential(rawCopy, inputErrorCode);
             return false;
         }
     }
-    private void checkCredential(List<String> rawCopy) {
-        System.out.println("checkCredentials: Incorrect first or last name or email - note: break this out");
-    }
-    //fixme - change inputErrorChecks return type to int to indicate to checkCreentials what to check.
-    private boolean inputErrorChecks(){
-        boolean checksOK = true;
+    //fixme - add students (enter a space, an error occurs)
+    private int inputErrorChecks(){
+        int checksOK = 0;
         List<String> rawCopy = new ArrayList<>(this.rawInput);
         if(rawCopy.size() == 1 && !rawCopy.get(0).equalsIgnoreCase("back")) {
-            checksOK = false;
-            System.out.println("Incorrect credentials");
+            checksOK = 101;
+            System.out.println("Error 101: Incorrect credentials");
         } else
         if(rawCopy.size() < 3 ) {
-            checksOK = false;
-            System.out.println("Incorrect credentials");
+            checksOK = 102;
+            System.out.println("Error 102: Incorrect credentials");
         } else
         if(rawCopy.get(0).length() < 2 || rawCopy.get(1).length() < 2 || rawCopy.get(rawCopy.size() - 1).length() < 8) {
-            checksOK = false;
-            //System.out.println("Incorrect first or last name or email - note: break this out");
+            checksOK = 103;
+            System.out.println("Error 103: Incorrect first or last name or email - note: break this out");
+
         }
         return checksOK;
     }

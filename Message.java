@@ -17,6 +17,10 @@ public final class Message {
     static void backCommand1_M() {
         System.out.println("Enter 'exit' to exit the program");
     }
+    static void student_dialoge1_M() {
+        System.out.println("Incorrect credentials");
+    }
+
 
     static void printStatus() {  //for testing only
         System.out.println("command Level: " + Interface.commandLevel);
