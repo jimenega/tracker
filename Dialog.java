@@ -13,8 +13,8 @@ public class Dialog {
       while (true) {
          List<String> rawInput = Arrays.asList(scanner.nextLine().split("\\s+"));
          if(rawInput.isEmpty()) {
-            Message.student_dialoge1_M();
-            continue;  //fixme - this is in testing
+            System.out.println("incorrect credentials: getStudentData()");
+            continue;
          }
          if(rawInput.get(0).equalsIgnoreCase("back") && (rawInput.size() == 1)) {
             //dialogOpen = false;

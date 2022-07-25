@@ -34,15 +34,12 @@ public class Validate {
         if(rawCopy.size() == 1 && !rawCopy.get(0).equalsIgnoreCase("back")) {
             checksOK = 101;
             System.out.println("Error 101: Incorrect credentials");
-        } else
-        if(rawCopy.size() < 3 ) {
+        } else if(rawCopy.size() < 3 ) {
             checksOK = 102;
             System.out.println("Error 102: Incorrect credentials");
-        } else
-        if(rawCopy.get(0).length() < 2 || rawCopy.get(1).length() < 2 || rawCopy.get(rawCopy.size() - 1).length() < 8) {
+        } else if(rawCopy.get(0).length() < 2 || rawCopy.get(1).length() < 2 || rawCopy.get(rawCopy.size() - 1).length() < 8) {
             checksOK = 103;
             System.out.println("Error 103: Incorrect first or last name or email - note: break this out");
-
         }
         return checksOK;
     }
@@ -55,6 +52,6 @@ public class Validate {
         stringIndex = rawCopy.size() - 1;
         rawCopy.remove(stringIndex);
         lastName = new ArrayList<>(rawCopy);
-        System.out.println("name: " + firstName + " last name: " + lastName + " email: " + email);
+        System.out.println("First name: " + firstName + "  Last name: " + lastName + "  email: " + email);
     }
 }
