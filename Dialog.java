@@ -7,7 +7,6 @@ public class Dialog {
    Dialog(String id) {
    }
    public void getStudentData() {
-      //boolean dialogOpen = true;
       int nameCount = 0;
       System.out.println("Enter student credentials or 'back' to return");
       while (true) {
@@ -17,7 +16,6 @@ public class Dialog {
             continue;
          }
          if(rawInput.get(0).equalsIgnoreCase("back") && (rawInput.size() == 1)) {
-            //dialogOpen = false;
             System.out.printf("Total %d students have been added\n", nameCount);
             new Back();
             break;

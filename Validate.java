@@ -11,7 +11,6 @@ public class Validate {
 
     Validate(List<String> rawInput) {
         this.rawInput = rawInput;
-        //assign();
     }
     private void checkCredential(List<String> rawCopy, int inputErrorCode) {
         System.out.println("Input error code: " + inputErrorCode);
@@ -52,6 +51,6 @@ public class Validate {
         stringIndex = rawCopy.size() - 1;
         rawCopy.remove(stringIndex);
         lastName = new ArrayList<>(rawCopy);
-        System.out.println("First name: " + firstName + "  Last name: " + lastName + "  email: " + email);
+        new Match(firstName, lastName, email);
     }
 }
