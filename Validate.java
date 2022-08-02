@@ -12,21 +12,7 @@ public class Validate {
     Validate(List<String> rawInput) {
         this.rawInput = rawInput;
     }
-    private void checkCredential(List<String> rawCopy, int inputErrorCode) {
-        System.out.println("Input error code: " + inputErrorCode);
-    }
-    boolean run() {
-        int inputErrorCode = inputErrorChecks();
-        if(inputErrorCode == 0) {
-            assign();
-            return true;
-        } else {
-            List<String> rawCopy = new ArrayList<>(this.rawInput);
-            checkCredential(rawCopy, inputErrorCode);
-            return false;
-        }
-    }
-    //fixme - add students (enter a space, an error occurs)
+
     private int inputErrorChecks(){
         int checksOK = 0;
         List<String> rawCopy = new ArrayList<>(this.rawInput);
@@ -42,6 +28,20 @@ public class Validate {
         }
         return checksOK;
     }
+
+    boolean run() {
+        int inputErrorCode = inputErrorChecks();
+        if(inputErrorCode == 0) {
+            assign();
+            return true;
+        } else {
+            List<String> rawCopy = new ArrayList<>(this.rawInput);
+            //checkCredential(rawCopy, inputErrorCode);
+            System.out.println("Input error code: " + inputErrorCode);
+            return false;
+        }
+    }
+
     private void assign(){
         List<String> rawCopy = new ArrayList<>(this.rawInput);
         int stringIndex = rawCopy.size() - 1;
