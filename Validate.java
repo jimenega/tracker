@@ -17,7 +17,6 @@ public class Validate {
 
     private int inputErrorChecks(){
         int errorCode = 0;
-        //List<String> rawCopy = new ArrayList<>(this.rawInput);
         if(rawCopy.size() == 1 && !rawCopy.get(0).equalsIgnoreCase("back")) {
             errorCode = 101;
             System.out.println("Error 101: Incorrect credentials");
@@ -30,22 +29,7 @@ public class Validate {
         }
         return errorCode;
     }
-
-    boolean run() {
-        int errorCode = inputErrorChecks();
-        if(errorCode == 0) {
-            assign();
-            return true;
-        } else {
-            //List<String> rawCopy = new ArrayList<>(this.rawInput);
-            //checkCredential(rawCopy, errorCode);
-            System.out.println("Input error code: " + errorCode);
-            return false;
-        }
-    }
-
     private void assign(){
-        //List<String> rawCopy = new ArrayList<>(this.rawInput);
         int stringIndex = rawCopy.size() - 1;
         firstName = rawCopy.get(0);
         email = rawCopy.get(stringIndex);
@@ -53,6 +37,17 @@ public class Validate {
         stringIndex = rawCopy.size() - 1;
         rawCopy.remove(stringIndex);
         lastName = new ArrayList<>(rawCopy);
-        new Match(firstName, lastName, email);
+        //new Match(firstName, lastName, email);
+    }
+    boolean run() {
+        int errorCode = inputErrorChecks();
+        if(errorCode == 0) {
+            assign();
+            new Match(firstName, lastName, email);
+            return true;
+        } else {
+            System.out.println("Input error code: " + errorCode);
+            return false;
+        }
     }
 }

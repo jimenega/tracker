@@ -8,7 +8,7 @@ public class Dialog {
    }
    public void getStudentData() {
       int nameCount = 0;
-      System.out.println("Enter student credentials or 'back' to return");
+      System.out.println("Enter student credentials or 'back' to return:");
       while (true) {
          List<String> rawInput = Arrays.asList(scanner.nextLine().split("\\s+"));
          if(rawInput.isEmpty()) {
@@ -16,7 +16,7 @@ public class Dialog {
             continue;
          }
          if(rawInput.get(0).equalsIgnoreCase("back") && (rawInput.size() == 1)) {
-            System.out.printf("Total %d students have been added\n", nameCount);
+            System.out.printf("Total %d students have been added.\n", nameCount);
             new Back();
             break;
          }  else {

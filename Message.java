@@ -15,7 +15,7 @@ public final class Message {
         System.out.println("Error: unknown command!");
     }
     static void backCommand1_M() {
-        System.out.println("Enter 'exit' to exit the program");
+        System.out.println("Enter 'exit' to exit the program.");
     }
 
     /*static void student_dialoge1_M() {
