@@ -1,12 +1,8 @@
 package tracker;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
 public class Match {
-    //private String firstName;
-    //private List<String> lastName;
-    //private String email;
     private boolean fn11;  // -'
     private boolean fn12;  // '-
     private boolean fn13;  // ''
@@ -18,13 +14,10 @@ public class Match {
     private boolean emailMatches;
 
     Match(String firstName, List<String> lastName, String email) {
-        //this.firstName = firstName;
-        //this.lastName = new ArrayList<>(lastName);
-        //this.email = email;
         checkFirstName(firstName);
         checkLastName(lastName);
         checkEmail(email);
-        printFinalPatternResults();
+        //printFinalPatternResults();
     }
     private void printPatternsAssigned(){
         System.out.println("fn11:" + fn11 + "  fn12:" + fn12 + "  fn13:" + fn13
@@ -39,6 +32,15 @@ public class Match {
                         + " Last Names match: " + lastNameMatches
                         + " Email matches: " + emailMatches);
     }
+    public boolean getFirstNameMatches() {
+        return firstNameMatches;
+    }
+    public boolean getLastNameMatches() {
+        return lastNameMatches;
+    }
+    public boolean getEmailMatches() {
+        return emailMatches;
+    }
     private void setNamePattern(String name) {
         fn11 = Pattern.matches(".*[-]['].*", name);  // -'
         fn12 = Pattern.matches(".*['][-].*", name);  // '-
@@ -47,44 +49,37 @@ public class Match {
         fn2 = Pattern.matches("[A-Za-z'//-]*", name);    // first name
     }
 
-    /*private void setLastPattern(String name) {
-        fn11 = Pattern.matches(".*[-]['].*", name);  // -'
-        fn12 = Pattern.matches(".*['][-].*", name);  // '-
-        fn13 = Pattern.matches(".*[']['].*", name);  // ''
-        fn14 = Pattern.matches(".*[-][-].*", name);  // --
-        fn2 = Pattern.matches("[A-Za-z'//-]*", name);    // first name
-    }*/
-
     private void setEmailPattern(String email) {
         em = Pattern.matches("(?i)[^@]+@[^@]+\\.[a-z]+", email); // email
     }
 
+    private void namePattern(boolean setToo, String name) {
+        if(fn2) setToo = true;
+        if(fn11) setToo = false;
+        if(fn12) setToo = false;
+        if(fn13) setToo = false;
+        if(fn14) setToo = false;
+        if(name == "first") firstNameMatches = setToo;
+        if(name == "last") lastNameMatches = setToo;
+    }
+
     private void checkFirstName(String name){
         setNamePattern(name);
-        if(fn2) firstNameMatches = true;
-        if(fn11) firstNameMatches = false;
-        if(fn12) firstNameMatches = false;
-        if(fn13) firstNameMatches = false;
-        if(fn14) firstNameMatches = false;
-        System.out.println("First Name Matched: " + firstNameMatches);
-        printPatternsAssigned();
+        namePattern(firstNameMatches, "first");
+        //System.out.println("First Name Matched: " + firstNameMatches);
+        //printPatternsAssigned();
         //todo: if firstNameMatch is false; student cannot be added - fix this error
     }
-//todo: reduce if's in ...checkFirtsName/checkLastName into one method - (?lastNameMatches/firstNameMatches?)
     private void checkLastName(List<String> names){
         int count = 0;
         int failCount = 0;
         for(String name : names) {
             setNamePattern(name);
-            if(fn2) lastNameMatches = true;
-            if(fn11) lastNameMatches = false;
-            if(fn12) lastNameMatches = false;
-            if(fn13) lastNameMatches = false;
-            if(fn14) lastNameMatches = false;
+            namePattern(lastNameMatches, "last");
             count++;
             if(!lastNameMatches) failCount++;
-            System.out.printf("Last Name #%d %s Matched: %s\n", count, name, lastNameMatches);
-            printPatternsAssigned();
+            //System.out.printf("Last Name #%d %s Matched: %s\n", count, name, lastNameMatches);
+            //printPatternsAssigned();
         }
         if(failCount != 0) lastNameMatches = false;
     }
@@ -92,7 +87,7 @@ public class Match {
     private void checkEmail(String email){
         setEmailPattern(email);
         if(em) emailMatches = true;
-        System.out.println("email Matched: " + emailMatches);
-        printEmailPatternsAssigned();
+        //System.out.println("email Matched: " + emailMatches);
+        //printEmailPatternsAssigned();
     }
 }

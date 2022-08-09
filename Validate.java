@@ -9,6 +9,7 @@ public class Validate {
     private List<String> lastName;
     private String firstName;
     private String email;
+    private Match match;
 
     Validate(List<String> rawInput) {
         this.rawInput = rawInput;
@@ -39,11 +40,12 @@ public class Validate {
         lastName = new ArrayList<>(rawCopy);
         //new Match(firstName, lastName, email);
     }
-    boolean run() {
+    public boolean run() {
         int errorCode = inputErrorChecks();
         if(errorCode == 0) {
             assign();
-            new Match(firstName, lastName, email);
+            match = new Match(firstName, lastName, email);  //todo -- this is new
+            System.out.println("matches: " + match.getFirstNameMatches() + " " + match.getLastNameMatches() + " " + match.getEmailMatches());
             return true;
         } else {
             System.out.println("Input error code: " + errorCode);
