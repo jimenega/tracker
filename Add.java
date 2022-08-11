@@ -8,8 +8,9 @@ public class Add implements Command{
     public String getName() {
         return this.name;
     }
+
     public void execute() {
-        Message.tmpAddMessage();
+        //Message.tmpAddMessage();
         Interface.commandLevel = 1;
     }
     void control(String cmd1) {

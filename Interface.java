@@ -36,7 +36,6 @@ public class Interface {
             String command0 = normalized.get(0).toLowerCase();
             String command1 = null;
             if(normalized.size() == 2) command1 = normalized.get(1).toLowerCase();
-            //if(normalized.size() > 2) command0 = "input_error";
 
             switch (command0) {
                 case "students" :
@@ -78,11 +77,7 @@ public class Interface {
                             new Add().control(command1);
                             break;
                     }
-                /*case "input_error" :
-                    Message.unknownCommand_M();
-                    break;*/
             }
-            //Message.printStatus();
         }
         else Message.unknownCommand_M();
     }

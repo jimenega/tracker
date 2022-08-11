@@ -20,7 +20,8 @@ public class Dialog {
             new Back();
             break;
          }  else {
-            if (new Validate(rawInput).run()) {
+            Validate validate = new Validate(rawInput);
+            if (validate.run()) {
                nameCount++;
                System.out.println("The student has been added.");
             }

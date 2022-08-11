@@ -53,7 +53,7 @@ public class Match {
         em = Pattern.matches("(?i)[^@]+@[^@]+\\.[a-z]+", email); // email
     }
 
-    private void namePattern(boolean setToo, String name) {
+    private void checkNamePattern(boolean setToo, String name) {
         if(fn2) setToo = true;
         if(fn11) setToo = false;
         if(fn12) setToo = false;
@@ -65,7 +65,7 @@ public class Match {
 
     private void checkFirstName(String name){
         setNamePattern(name);
-        namePattern(firstNameMatches, "first");
+        checkNamePattern(firstNameMatches, "first");
         //System.out.println("First Name Matched: " + firstNameMatches);
         //printPatternsAssigned();
         //todo: if firstNameMatch is false; student cannot be added - fix this error
@@ -75,7 +75,7 @@ public class Match {
         int failCount = 0;
         for(String name : names) {
             setNamePattern(name);
-            namePattern(lastNameMatches, "last");
+            checkNamePattern(lastNameMatches, "last");
             count++;
             if(!lastNameMatches) failCount++;
             //System.out.printf("Last Name #%d %s Matched: %s\n", count, name, lastNameMatches);

@@ -10,6 +10,7 @@ public class Validate {
     private String firstName;
     private String email;
     private Match match;
+    //private boolean result;
 
     Validate(List<String> rawInput) {
         this.rawInput = rawInput;
@@ -20,14 +21,14 @@ public class Validate {
         int errorCode = 0;
         if(rawCopy.size() == 1 && !rawCopy.get(0).equalsIgnoreCase("back")) {
             errorCode = 101;
-            System.out.println("Error 101: Incorrect credentials");
+            System.out.println("Incorrect credentials.");
         } else if(rawCopy.size() < 3 ) {
             errorCode = 102;
-            System.out.println("Error 102: Incorrect credentials");
-        } else if(rawCopy.get(0).length() < 2 || rawCopy.get(1).length() < 2 || rawCopy.get(rawCopy.size() - 1).length() < 8) {
+            System.out.println("Error 102: Incorrect credentials.");
+        } /*else if(rawCopy.get(0).length() < 2 || rawCopy.get(1).length() < 2 || rawCopy.get(rawCopy.size() - 1).length() < 8) {
             errorCode = 103;
             System.out.println("Error 103: Incorrect first or last name or email - note: break this out");
-        }
+        }*/
         return errorCode;
     }
     private void assign(){
@@ -40,15 +41,28 @@ public class Validate {
         lastName = new ArrayList<>(rawCopy);
         //new Match(firstName, lastName, email);
     }
+
+    private boolean validatedResults() {
+        boolean results = false;
+        if(match.getFirstNameMatches() && match.getLastNameMatches() && match.getEmailMatches()) {
+            return results = true; }
+        if(!match.getFirstNameMatches()) System.out.println("Incorrect first name.");
+        else if(!match.getLastNameMatches()) System.out.println("Incorrect last name.");
+        else if(!match.getEmailMatches()) System.out.println("Incorrect email.");
+        return results;
+    }
+
     public boolean run() {
         int errorCode = inputErrorChecks();
         if(errorCode == 0) {
             assign();
             match = new Match(firstName, lastName, email);  //todo -- this is new
             System.out.println("matches: " + match.getFirstNameMatches() + " " + match.getLastNameMatches() + " " + match.getEmailMatches());
-            return true;
+            System.out.println("Store this: " + firstName + " " + lastName + " " + email);
+            if(validatedResults()) return true;
+            else return false;
         } else {
-            System.out.println("Input error code: " + errorCode);
+            //System.out.println("Input error code: " + errorCode);  //todo: Keep this for debugging
             return false;
         }
     }

@@ -18,14 +18,12 @@ public final class Message {
         System.out.println("Enter 'exit' to exit the program.");
     }
 
-    /*static void student_dialoge1_M() {
-        System.out.println("incorrect credentials");
-    }*/
-    static void printStatus() {  //for testing only
+    /*static void printStatus() {  //for testing only
         System.out.println("command Level: " + Interface.commandLevel);
         System.out.println("active command: " + Interface.activeCommand);
-    }
-    static void tmpAddMessage() {
+    }*/
+
+    /*static void tmpAddMessage() {
         System.out.println("Ready to Add student");
-    }
+    }*/
 }
