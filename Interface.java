@@ -89,9 +89,6 @@ public class Interface {
         Message.printTitle_M();
         while (Main.trackerON) {
             verifyConsoleInput();
-            //while (commandLevel > 0) {
-            //    verifyConsoleInput();
-            //}
         }
     }
 }

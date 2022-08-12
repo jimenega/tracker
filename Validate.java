@@ -4,17 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Validate {
-    private List<String> rawInput;
-    private List<String> rawCopy;
+    private final List<String> rawCopy;
     private List<String> lastName;
     private String firstName;
     private String email;
     private Match match;
-    //private boolean result;
 
     Validate(List<String> rawInput) {
-        this.rawInput = rawInput;
         this.rawCopy = new ArrayList<>(rawInput);
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public List<String> getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     private int inputErrorChecks(){
@@ -45,7 +54,7 @@ public class Validate {
     private boolean validatedResults() {
         boolean results = false;
         if(match.getFirstNameMatches() && match.getLastNameMatches() && match.getEmailMatches()) {
-            return results = true; }
+            return true; }
         if(!match.getFirstNameMatches()) System.out.println("Incorrect first name.");
         else if(!match.getLastNameMatches()) System.out.println("Incorrect last name.");
         else if(!match.getEmailMatches()) System.out.println("Incorrect email.");
@@ -56,13 +65,11 @@ public class Validate {
         int errorCode = inputErrorChecks();
         if(errorCode == 0) {
             assign();
-            match = new Match(firstName, lastName, email);  //todo -- this is new
+            match = new Match(firstName, lastName, email);
             System.out.println("matches: " + match.getFirstNameMatches() + " " + match.getLastNameMatches() + " " + match.getEmailMatches());
-            System.out.println("Store this: " + firstName + " " + lastName + " " + email);
-            if(validatedResults()) return true;
-            else return false;
+            return validatedResults();
         } else {
-            //System.out.println("Input error code: " + errorCode);  //todo: Keep this for debugging
+            //System.out.println("Input error code: " + errorCode);  //Keep this for debugging
             return false;
         }
     }

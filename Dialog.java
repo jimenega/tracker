@@ -23,6 +23,8 @@ public class Dialog {
             Validate validate = new Validate(rawInput);
             if (validate.run()) {
                nameCount++;
+               System.out.println("Store this: "   + validate.getFirstName()
+                       + " " +  validate.getLastName() + " " + validate.getEmail());
                System.out.println("The student has been added.");
             }
          }
