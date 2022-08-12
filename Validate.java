@@ -33,11 +33,8 @@ public class Validate {
             System.out.println("Incorrect credentials.");
         } else if(rawCopy.size() < 3 ) {
             errorCode = 102;
-            System.out.println("Error 102: Incorrect credentials.");
-        } /*else if(rawCopy.get(0).length() < 2 || rawCopy.get(1).length() < 2 || rawCopy.get(rawCopy.size() - 1).length() < 8) {
-            errorCode = 103;
-            System.out.println("Error 103: Incorrect first or last name or email - note: break this out");
-        }*/
+            System.out.println("Incorrect credentials.");
+        }
         return errorCode;
     }
     private void assign(){
@@ -48,7 +45,6 @@ public class Validate {
         stringIndex = rawCopy.size() - 1;
         rawCopy.remove(stringIndex);
         lastName = new ArrayList<>(rawCopy);
-        //new Match(firstName, lastName, email);
     }
 
     private boolean validatedResults() {
@@ -66,7 +62,8 @@ public class Validate {
         if(errorCode == 0) {
             assign();
             match = new Match(firstName, lastName, email);
-            System.out.println("matches: " + match.getFirstNameMatches() + " " + match.getLastNameMatches() + " " + match.getEmailMatches());
+            //Keep the following line for debugging
+            //System.out.println("matches: " + match.getFirstNameMatches() + " " + match.getLastNameMatches() + " " + match.getEmailMatches());
             return validatedResults();
         } else {
             //System.out.println("Input error code: " + errorCode);  //Keep this for debugging

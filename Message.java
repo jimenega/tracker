@@ -17,9 +17,4 @@ public final class Message {
     static void backCommand1_M() {
         System.out.println("Enter 'exit' to exit the program.");
     }
-
-    /*static void printStatus() {  //for testing only
-        System.out.println("command Level: " + Interface.commandLevel);
-        System.out.println("active command: " + Interface.activeCommand);
-    }*/
 }
