@@ -42,6 +42,24 @@ public class Interface {
                 case "points" :
                     Message.unknownCommand_M();
                     break;
+                case "list" :
+                    if(normalized.size() > 1) {
+                        Message.unknownCommand_M();
+                        break;
+                    }
+                    commandLevel = 0;
+                    activeCommand = Command.RESERVED.list;
+                    new Tlist().execute(); //todo: List().execute
+                    break;
+                case "find" :
+                    if(normalized.size() > 1) {
+                        Message.unknownCommand_M();
+                        break;
+                    }
+                    commandLevel = 0;
+                    activeCommand = Command.RESERVED.find;
+                    new Find().execute();  //todo: List().execute
+                    break;
                 case "exit" :
                     if(normalized.size() > 1) {
                         Message.unknownCommand_M();
