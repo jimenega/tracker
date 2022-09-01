@@ -7,6 +7,7 @@ public class Match {
     private boolean fn12;  // '-
     private boolean fn13;  // ''
     private boolean fn14;  // --
+    private boolean fn15;  // ^[-'] beginning or [-']$ ending
     private boolean fn2;   // first name
     private boolean em;    // email
     private boolean firstNameMatches;
@@ -33,11 +34,18 @@ public class Match {
         fn12 = Pattern.matches(".*['][-].*", name);  // '-
         fn13 = Pattern.matches(".*[']['].*", name);  // ''
         fn14 = Pattern.matches(".*[-][-].*", name);  // --
+        fn15 = Pattern.matches("(^[-'].*)|(.*[-']$)", name);
         fn2 = Pattern.matches("[A-Za-z'/-]*", name);    // first name // * note: removed one / as recommended by Ij
     }
 
     private void setEmailPattern(String email) {
-        em = Pattern.matches("(?i)[^@]+@[^@]+\\.[a-z]+", email); // email
+        // [^@]+@[^@]+\.[a-z0-9]+
+        //"(?i)^[a-z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-z0-9]+[/.]"
+        //em = Pattern.matches("(?i)[^@]+@[^@]+\\.[a-z]+", email); // original
+        //em = Pattern.matches("(?i)[^@]+@[^@]+[a-z0-9]+\\.[a-z0-9]+", email); // modified for error test #17
+        //em = Pattern.matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", email); // test #17
+        //em = Pattern.matches("(?i)^[a-z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-z0-9]+[/.] ", email); // original
+        em = Pattern.matches("[\\w.]+@\\w+\\.\\w+", email);  //EXCELLENT
     }
 
     private void checkNamePattern(String name) {
@@ -47,22 +55,25 @@ public class Match {
         if(fn12) result = false;
         if(fn13) result = false;
         if(fn14) result = false;
-        //if(name == "first") firstNameMatches = setToo;
+        if(fn15) result = false;
         if(name.equals("first")) firstNameMatches = result;
-        //if(name == "last") lastNameMatches = setToo;
         if(name.equals("last")) lastNameMatches = result;
     }
 
     private void checkFirstName(String name){
-        setNamePattern(name);
-        checkNamePattern("first");
+        if(name.length() >= 2) {    //todo: update this change on working repository
+            setNamePattern(name);
+            checkNamePattern("first");
+        }
     }
     private void checkLastName(List<String> names){
         int failCount = 0;
         for(String name : names) {
-            setNamePattern(name);
-            checkNamePattern("last");
-            if(!lastNameMatches) failCount++;
+            if(name.length() >= 2) {  //todo: update this change on working repository
+                setNamePattern(name);
+                checkNamePattern("last");
+                if (!lastNameMatches) failCount++;
+            }
         }
         if(failCount != 0) lastNameMatches = false;
     }
