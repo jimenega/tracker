@@ -3,11 +3,27 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 public class Dialog {
+   String id;
+   Store store;
+   int nameCount;
    private final Scanner scanner = new Scanner(System.in);
    Dialog(String id) {
+      this.id = id;
+      this.store = Store.getInstance();
+   }
+
+   private void storeData(String name1, List<String> name2, String email) {
+      nameCount++;
+      store.getConnection();
+      Student student = new Student();  //create new student record
+      student.setFirstName(name1);
+      student.setLastName(name2);
+      student.setEmail(email);
+      store.tryStoreStudent(student);
+      System.out.println("The student has been added. - REMOVE ME - Dialog");
    }
    public void getStudentData() {
-      int nameCount = 0;
+      nameCount = 0;
       System.out.println("Enter student credentials or 'back' to return:");
       while (true) {
          List<String> rawInput = Arrays.asList(scanner.nextLine().split("\\s+"));
@@ -22,8 +38,7 @@ public class Dialog {
          }  else {
             Validate validate = new Validate(rawInput);
             if (validate.run()) {
-               nameCount++;
-               System.out.println("The student has been added.");
+               storeData(validate.getFirstName(), validate.getLastName(), validate.getEmail());
             }
          }
       }
