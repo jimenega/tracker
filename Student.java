@@ -3,7 +3,6 @@ package tracker;
 import java.util.List;
 
 public class Student {
-
     private String firstName;
     private String lastName;
     private String email;
@@ -30,7 +29,7 @@ public class Student {
 
     public void setLastName(List<String> lastNameList) {
         // set to String from List
-        this.lastName = lastNameList.toString();
+        this.lastName = lastNameList.toString().replaceAll("\\p{P}","");
     }
 
     public String getEmail() {
