@@ -1,7 +1,7 @@
 package tracker;
 class Exit implements Command{
     String name = "exit";
-    Exit(){
+    Exit() {
         Interface.activeCommand = RESERVED.exit;
     }
     public String getName() {

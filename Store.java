@@ -6,7 +6,7 @@ public class Store {
     private static Store dbObject;
     private int id = 10000;  // student id
     private Student currentStudent;
-    Map<Integer, Student> dbMap = new HashMap<>();
+    private Map<Integer, Student> dbMap = new HashMap<>();
     private Store() {
     }
     public static Store getInstance() {
@@ -17,11 +17,8 @@ public class Store {
         // returns the singleton object
         return dbObject;
     }
-    public void getConnection() {
-        System.out.println("You are now connected to the store.");
-    }
 
-    public void idIncrement() {
+    private void idIncrement() {
         id++;
         //System.out.println("Next Student id: " + id);
     }
@@ -52,5 +49,14 @@ public class Store {
         }
         return isStudentStored;
     }
-}
 
+    public boolean tryList() {
+        return dbMap.keySet().isEmpty();
+    }
+
+    public void printList() {
+        for (Integer i : dbMap.keySet()) {
+            System.out.println(i);
+        }
+    }
+}

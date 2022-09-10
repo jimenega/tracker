@@ -10,7 +10,6 @@ public class Add implements Command{
     }
 
     public void execute() {
-        //Message.tmpAddMessage();
         Interface.commandLevel = 1;
     }
     void control(String cmd1) {

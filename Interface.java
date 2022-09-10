@@ -49,7 +49,7 @@ public class Interface {
                     }
                     commandLevel = 0;
                     activeCommand = Command.RESERVED.list;
-                    new Tlist().execute(); //todo: List().execute
+                    new Tlist().execute();
                     break;
                 case "find" :
                     if(normalized.size() > 1) {
@@ -58,7 +58,7 @@ public class Interface {
                     }
                     commandLevel = 0;
                     activeCommand = Command.RESERVED.find;
-                    new Find().execute();  //todo: List().execute
+                    new Find().execute();  //todo: find().execute
                     break;
                 case "exit" :
                     if(normalized.size() > 1) {
