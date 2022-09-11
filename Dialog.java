@@ -23,6 +23,7 @@ public class Dialog {
       //System.out.println("The student has been added. - REMOVE ME - Dialog");
       //Dialog dialog = this;
    }
+
    public void getStudentData() {
       nameCount = 0;
       System.out.println("Enter student credentials or 'back' to return");
@@ -40,6 +41,28 @@ public class Dialog {
             Validate validate = new Validate(rawInput);
             if (validate.run()) {
                storeData(validate.getFirstName(), validate.getLastName(), validate.getEmail());
+            }
+         }
+      }
+   }
+
+   public void getPointsData() {
+      nameCount = 0;
+      System.out.println("Enter an id and points or 'back' to return");
+      while (true) {
+         List<String> rawInput = Arrays.asList(scanner.nextLine().split("\\s+"));
+         if (rawInput.isEmpty() || rawInput.get(0).equals("")) {
+            System.out.println("Incorrect points format. - getPointsData()");
+            continue;
+         }
+         if (rawInput.get(0).equalsIgnoreCase("back") && (rawInput.size() == 1)) {
+            System.out.println("back from 'add points'");
+            new Back();
+            break;
+         }  else {
+            Certify certify = new Certify(rawInput);
+            if (certify.run()) {
+               System.out.println("Dialog::getPointsData");
             }
          }
       }

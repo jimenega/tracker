@@ -18,19 +18,12 @@ public class Add implements Command{
     }
 
     void studentsCtrl() {
-        //todo: add new class Dialog - box to handle students.
-        //      Do the same for points
-        //      Then, add class Patterns
-        //      to check student data using match/regex.
-        //      Consider a class Store for future data storage/database.
-        //      Configure studentDialog here: add regex checker obj ? add store for data ?
-        //new Dialog("students").getData();
         Dialog studentDialog = new Dialog("students");
         studentDialog.getStudentData();
-        //studentDialog = null;
     }
 
     void pointsCtrl() {
-        System.out.println("Enter an id and points or 'back' to return");
+        Dialog pointsDialog = new Dialog("points");
+        pointsDialog.getPointsData();
     }
 }
