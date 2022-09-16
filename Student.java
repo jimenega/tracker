@@ -8,7 +8,7 @@ public class Student {
     private String email;
     private int java;
     private int dsa;
-    private int databases;
+    private int database;
     private int spring;
 
     Student() {
@@ -57,11 +57,11 @@ public class Student {
     }
 
     public int getDatabases() {
-        return databases;
+        return database;
     }
 
-    public void setDatabases(int databases) {
-        this.databases = databases;
+    public void setDatabase(int database) {
+        this.database = database;
     }
 
     public int getSpring() {

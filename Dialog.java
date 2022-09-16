@@ -12,19 +12,15 @@ public class Dialog {
       this.store = Store.getInstance();  //Create Store Singleton
    }
 
-   private void storeData(String name1, List<String> name2, String email) {
-      //nameCount++;
-      //store.getConnection();
+   private void storeStudent(String name1, List<String> name2, String email) {
       Student student = new Student();  //create new student record
       student.setFirstName(name1);
       student.setLastName(name2);
       student.setEmail(email);
       if (store.tryStoreStudent(student)) nameCount++;
-      //System.out.println("The student has been added. - REMOVE ME - Dialog");
-      //Dialog dialog = this;
    }
 
-   public void getStudentData() {
+   public void getStudent() {
       nameCount = 0;
       System.out.println("Enter student credentials or 'back' to return");
       while (true) {
@@ -40,19 +36,19 @@ public class Dialog {
          }  else {
             Validate validate = new Validate(rawInput);
             if (validate.run()) {
-               storeData(validate.getFirstName(), validate.getLastName(), validate.getEmail());
+               storeStudent(validate.getFirstName(), validate.getLastName(), validate.getEmail());
             }
          }
       }
    }
 
-   public void getPointsData() {
+   public void getPoints() {
       nameCount = 0;
       System.out.println("Enter an id and points or 'back' to return");
       while (true) {
          List<String> rawInput = Arrays.asList(scanner.nextLine().split("\\s+"));
          if (rawInput.isEmpty() || rawInput.get(0).equals("")) {
-            System.out.println("Incorrect points format. - getPointsData()");
+            System.out.println("Incorrect points format. - getPoints()");
             continue;
          }
          if (rawInput.get(0).equalsIgnoreCase("back") && (rawInput.size() == 1)) {
@@ -62,7 +58,15 @@ public class Dialog {
          }  else {
             Certify certify = new Certify(rawInput);
             if (certify.run()) {
-               System.out.println("Dialog::getPointsData");
+               System.out.println("Dialog::getPoints");
+               //storePoints(certify);  //todo: work on this
+               store.tryStorePoints(certify);
+               int ids = certify.getId();
+               Student student = store.getStudent(ids);
+               System.out.println( "updated record " + student.getJava() + " " + student.getDsa() + " "
+                                                + student.getDatabases() + " "
+                                                + student.getSpring());
+
             }
          }
       }

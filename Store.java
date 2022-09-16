@@ -59,4 +59,29 @@ public class Store {
             System.out.println(i);
         }
     }
+    public boolean tryStorePoints(Certify certify) {
+        int currentId = certify.getId();
+        boolean pointsStored;
+        if (isIdExist(currentId)) {
+            System.out.println("id does exist - continue storing points");
+            Student student = dbMap.get(currentId);
+            student.setJava(student.getJava() + certify.getJava());
+            student.setDsa(student.getDsa() + certify.getDsa());
+            student.setDatabase(student.getDatabases() + certify.getDatabase());
+            student.setSpring(student.getSpring() + certify.getSpring());
+            pointsStored = true;
+        } else {
+            System.out.println("id does not exist");
+            pointsStored = false;
+        }
+        return pointsStored;
+    }
+
+    private boolean isIdExist(int id) {
+        return dbMap.containsKey(id);
+    }
+
+    public Student getStudent(int id) {
+        return dbMap.get(id);
+    }
 }

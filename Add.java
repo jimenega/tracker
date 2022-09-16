@@ -19,11 +19,11 @@ public class Add implements Command{
 
     void studentsCtrl() {
         Dialog studentDialog = new Dialog("students");
-        studentDialog.getStudentData();
+        studentDialog.getStudent();
     }
 
     void pointsCtrl() {
         Dialog pointsDialog = new Dialog("points");
-        pointsDialog.getPointsData();
+        pointsDialog.getPoints();
     }
 }
