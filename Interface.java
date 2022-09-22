@@ -58,7 +58,7 @@ public class Interface {
                     }
                     commandLevel = 0;
                     activeCommand = Command.RESERVED.find;
-                    new Find().execute();  //todo: find().execute
+                    new Find().execute();
                     break;
                 case "exit" :
                     if(normalized.size() > 1) {

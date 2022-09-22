@@ -82,6 +82,9 @@ public class Store {
     }
 
     public Student getStudent(int id) {
-        return dbMap.get(id);
+        if (isIdExist(id))
+            return dbMap.get(id);
+        else return null;
     }
+
 }

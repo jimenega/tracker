@@ -60,13 +60,13 @@ public class Dialog {
             if (certify.run()) {
                System.out.println("Dialog::getPoints");
                //storePoints(certify);  //todo: work on this
-               store.tryStorePoints(certify);
-               int ids = certify.getId();
-               Student student = store.getStudent(ids);
-               System.out.println( "updated record " + student.getJava() + " " + student.getDsa() + " "
-                                                + student.getDatabases() + " "
-                                                + student.getSpring());
-
+               if (store.tryStorePoints(certify)) {
+                  int ids = certify.getId();
+                  Student student = store.getStudent(ids);
+                  System.out.println("updated record " + student.getJava() + " " + student.getDsa() + " "
+                          + student.getDatabases() + " "
+                          + student.getSpring());
+               }
             }
          }
       }
