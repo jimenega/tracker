@@ -37,7 +37,7 @@ public class Store {
         currentStudent = student;
         boolean isStudentStored;
         //System.out.println(currentStudent.getFirstName() + " " + currentStudent.getLastName() +" " + currentStudent.getEmail());
-        System.out.println(student.getFirstName() + " " + student.getLastName() +" " + student.getEmail());
+        //System.out.println(student.getFirstName() + " " + student.getLastName() +" " + student.getEmail());
         if (isDuplicateEmail()) {
             System.out.println("This email is already taken.");
             isStudentStored = false;
@@ -63,7 +63,7 @@ public class Store {
         int currentId = certify.getId();
         boolean pointsStored;
         if (isIdExist(currentId)) {
-            System.out.println("id does exist - continue storing points");
+            //System.out.println("id does exist - continue storing points");
             Student student = dbMap.get(currentId);
             student.setJava(student.getJava() + certify.getJava());
             student.setDsa(student.getDsa() + certify.getDsa());

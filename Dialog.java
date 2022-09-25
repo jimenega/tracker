@@ -22,7 +22,7 @@ public class Dialog {
 
    public void getStudent() {
       nameCount = 0;
-      System.out.println("Enter student credentials or 'back' to return");
+      System.out.println("Enter student credentials or 'back' to return:");
       while (true) {
          List<String> rawInput = Arrays.asList(scanner.nextLine().split("\\s+"));
          if(rawInput.isEmpty()) {
@@ -44,7 +44,7 @@ public class Dialog {
 
    public void getPoints() {
       nameCount = 0;
-      System.out.println("Enter an id and points or 'back' to return");
+      System.out.println("Enter an id and points or 'back' to return:");
       while (true) {
          List<String> rawInput = Arrays.asList(scanner.nextLine().split("\\s+"));
          if (rawInput.isEmpty() || rawInput.get(0).equals("")) {
@@ -52,20 +52,21 @@ public class Dialog {
             continue;
          }
          if (rawInput.get(0).equalsIgnoreCase("back") && (rawInput.size() == 1)) {
-            System.out.println("back from 'add points'");
+            //System.out.println("back from 'add points'");
             new Back();
             break;
          }  else {
             Certify certify = new Certify(rawInput);
             if (certify.run()) {
-               System.out.println("Dialog::getPoints");
+               //System.out.println("Dialog::getPoints");
                //storePoints(certify);  //todo: work on this
                if (store.tryStorePoints(certify)) {
                   int ids = certify.getId();
                   Student student = store.getStudent(ids);
-                  System.out.println("updated record " + student.getJava() + " " + student.getDsa() + " "
+                  /*System.out.println("updated record " + student.getJava() + " " + student.getDsa() + " "
                           + student.getDatabases() + " "
-                          + student.getSpring());
+                          + student.getSpring());*/
+                  System.out.println("Points updated.");
                }
             }
          }

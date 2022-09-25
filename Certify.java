@@ -35,7 +35,7 @@ public class Certify {
                 .replaceAll(",","")
                 .replaceAll("]","");
         matches = Pattern.matches("[^-]\\d* \\d* \\d* \\d* \\d*", rawCopyString);
-        System.out.println("Certify::Certify::matches: " + matches);
+        //System.out.println("Certify::Certify::matches: " + matches);
     }
 
     private int inputErrorChecks(){
@@ -51,13 +51,13 @@ public class Certify {
     }
     private void assign() {
         int ID = 0, JAVA = 1, DSA = 2, DB = 3, SPRING = 4;
-        System.out.println("Certify::assign: " + rawCopy);
+        //System.out.println("Certify::assign: " + rawCopy);
         id = Integer.parseInt(rawCopy.get(ID));
         java = Integer.parseInt(rawCopy.get(JAVA));
         dsa = Integer.parseInt(rawCopy.get(DSA));
         db = Integer.parseInt(rawCopy.get(DB));
         spring = Integer.parseInt(rawCopy.get(SPRING));
-        System.out.println("Certify::assign - id " + id);
+        //System.out.println("Certify::assign - id " + id);
     }
 
     /*private boolean certifyResults() {
