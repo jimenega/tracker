@@ -45,7 +45,7 @@ public class Certify {
             System.out.println("Incorrect credentials.");
         } else if(rawCopy.size() != 5 ) {
             errorCode = 102;
-            System.out.println("Incorrect credentials.");
+            //System.out.println("Incorrect points format.");
         }
         return errorCode;
     }
@@ -60,16 +60,13 @@ public class Certify {
         //System.out.println("Certify::assign - id " + id);
     }
 
-    /*private boolean certifyResults() {
-        return matches;
-    }*/
     public boolean run() {
         int errorCode = inputErrorChecks();
-        if(errorCode == 0 && matches) {
+         if(errorCode == 0 && matches) {
             assign();
             return true;
         } else {
-            //System.out.println("Input error code: " + errorCode);  //Keep this for debugging
+            System.out.println("Incorrect points format.");  //Keep this for debugging
             return false;
         }
     }

@@ -71,7 +71,7 @@ public class Store {
             student.setSpring(student.getSpring() + certify.getSpring());
             pointsStored = true;
         } else {
-            System.out.println("id does not exist");
+            System.out.printf("No student is found for id:%d.%n", currentId);
             pointsStored = false;
         }
         return pointsStored;
@@ -86,5 +86,4 @@ public class Store {
             return dbMap.get(id);
         else return null;
     }
-
 }

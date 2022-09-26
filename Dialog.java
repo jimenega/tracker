@@ -59,7 +59,7 @@ public class Dialog {
             Certify certify = new Certify(rawInput);
             if (certify.run()) {
                //System.out.println("Dialog::getPoints");
-               //storePoints(certify);  //todo: work on this
+               //storePoints(certify);
                if (store.tryStorePoints(certify)) {
                   int ids = certify.getId();
                   Student student = store.getStudent(ids);
