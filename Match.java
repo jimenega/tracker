@@ -1,7 +1,6 @@
 package tracker;
 import java.util.List;
 import java.util.regex.Pattern;
-
 public class Match {
     private boolean fn11;  // -'
     private boolean fn12;  // '-
@@ -13,13 +12,11 @@ public class Match {
     private boolean firstNameMatches;
     private boolean lastNameMatches;
     private boolean emailMatches;
-
     Match(String firstName, List<String> lastName, String email) {
         checkFirstName(firstName);
         checkLastName(lastName);
         checkEmail(email);
     }
-
     public boolean getFirstNameMatches() {
         return firstNameMatches;
     }
@@ -35,19 +32,11 @@ public class Match {
         fn13 = Pattern.matches(".*[']['].*", name);  // ''
         fn14 = Pattern.matches(".*[-][-].*", name);  // --
         fn15 = Pattern.matches("(^[-'].*)|(.*[-']$)", name);
-        fn2 = Pattern.matches("[A-Za-z'/-]*", name);    // first name // * note: removed one / as recommended by Ij
+        fn2 = Pattern.matches("[A-Za-z'/-]*", name);
     }
-
     private void setEmailPattern(String email) {
-        // [^@]+@[^@]+\.[a-z0-9]+
-        //"(?i)^[a-z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-z0-9]+[/.]"
-        //em = Pattern.matches("(?i)[^@]+@[^@]+\\.[a-z]+", email); // original
-        //em = Pattern.matches("(?i)[^@]+@[^@]+[a-z0-9]+\\.[a-z0-9]+", email); // modified for error test #17
-        //em = Pattern.matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", email); // test #17
-        //em = Pattern.matches("(?i)^[a-z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-z0-9]+[/.] ", email); // original
         em = Pattern.matches("[\\w.]+@\\w+\\.\\w+", email);  //EXCELLENT
     }
-
     private void checkNamePattern(String name) {
         boolean result = false;
         if(fn2) result = true;
@@ -59,7 +48,6 @@ public class Match {
         if(name.equals("first")) firstNameMatches = result;
         if(name.equals("last")) lastNameMatches = result;
     }
-
     private void checkFirstName(String name){
         if(name.length() >= 2) {    //todo: update this change on working repository
             setNamePattern(name);
@@ -77,7 +65,6 @@ public class Match {
         }
         if(failCount != 0) lastNameMatches = false;
     }
-
     private void checkEmail(String email){
         setEmailPattern(email);
         if(em) emailMatches = true;

@@ -5,12 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
-
 public class Find implements Command {
     Store store;
     private final Scanner scanner = new Scanner(System.in);  //todo-note: this was added
     String name = "find";
-
     Find(){
         Interface.activeCommand = RESERVED.find;
         this.store = Store.getInstance();
@@ -18,7 +16,6 @@ public class Find implements Command {
     public String getName() {
         return this.name;
     }
-
     private boolean inputChecks(List<String> rawInput) {
         boolean checksPass = false;
         if (rawInput.size() == 1) {
@@ -33,15 +30,11 @@ public class Find implements Command {
                 .replaceAll("\\[", "")
                 .replaceAll("]","");
         boolean matches = Pattern.matches("[^-]\\d*", rawCopyString);
-        //System.out.println("Find::execute: matches: " + matches);
-        //System.out.println("Find::execute: rawCopy: " + rawCopy);
-        //System.out.println("Find::execute: rawCopyString: " +  rawCopyString);
         if (matches) {
            id = Integer.parseInt(rawCopy.get(0));
         }
         return id;
     }
-
     public void console() {
         System.out.println("Enter an id or 'back' to return:");
         while (true) {
@@ -56,7 +49,6 @@ public class Find implements Command {
                 continue;
             }
             if (rawInput.get(0).equalsIgnoreCase("back") && (rawInput.size() == 1)) {
-                //System.out.println("back from Find");
                 new Back();
                 break;
             }  else {

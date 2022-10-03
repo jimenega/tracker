@@ -1,7 +1,6 @@
 package tracker;
 
 import java.util.*;
-
 public class Store {
     private static Store dbObject;
     private int id = 10000;  // student id
@@ -17,12 +16,9 @@ public class Store {
         // returns the singleton object
         return dbObject;
     }
-
     private void idIncrement() {
         id++;
-        //System.out.println("Next Student id: " + id);
     }
-
     private boolean isDuplicateEmail() {
         boolean duplicate = false;
         for (Student s : dbMap.values()) {
@@ -36,8 +32,6 @@ public class Store {
     public boolean tryStoreStudent(Student student) {
         currentStudent = student;
         boolean isStudentStored;
-        //System.out.println(currentStudent.getFirstName() + " " + currentStudent.getLastName() +" " + currentStudent.getEmail());
-        //System.out.println(student.getFirstName() + " " + student.getLastName() +" " + student.getEmail());
         if (isDuplicateEmail()) {
             System.out.println("This email is already taken.");
             isStudentStored = false;
@@ -49,11 +43,9 @@ public class Store {
         }
         return isStudentStored;
     }
-
     public boolean tryList() {
         return dbMap.keySet().isEmpty();
     }
-
     public void printList() {
         for (Integer i : dbMap.keySet()) {
             System.out.println(i);
@@ -63,7 +55,6 @@ public class Store {
         int currentId = certify.getId();
         boolean pointsStored;
         if (isIdExist(currentId)) {
-            //System.out.println("id does exist - continue storing points");
             Student student = dbMap.get(currentId);
             student.setJava(student.getJava() + certify.getJava());
             student.setDsa(student.getDsa() + certify.getDsa());
@@ -76,11 +67,9 @@ public class Store {
         }
         return pointsStored;
     }
-
     private boolean isIdExist(int id) {
         return dbMap.containsKey(id);
     }
-
     public Student getStudent(int id) {
         if (isIdExist(id))
             return dbMap.get(id);

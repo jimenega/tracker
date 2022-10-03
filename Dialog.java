@@ -11,7 +11,6 @@ public class Dialog {
       this.title = id;
       this.store = Store.getInstance();  //Create Store Singleton
    }
-
    private void storeStudent(String name1, List<String> name2, String email) {
       Student student = new Student();  //create new student record
       student.setFirstName(name1);
@@ -19,7 +18,6 @@ public class Dialog {
       student.setEmail(email);
       if (store.tryStoreStudent(student)) nameCount++;
    }
-
    public void getStudent() {
       nameCount = 0;
       System.out.println("Enter student credentials or 'back' to return:");
@@ -41,7 +39,6 @@ public class Dialog {
          }
       }
    }
-
    public void getPoints() {
       nameCount = 0;
       System.out.println("Enter an id and points or 'back' to return:");
@@ -52,20 +49,14 @@ public class Dialog {
             continue;
          }
          if (rawInput.get(0).equalsIgnoreCase("back") && (rawInput.size() == 1)) {
-            //System.out.println("back from 'add points'");
             new Back();
             break;
          }  else {
             Certify certify = new Certify(rawInput);
             if (certify.run()) {
-               //System.out.println("Dialog::getPoints");
-               //storePoints(certify);
                if (store.tryStorePoints(certify)) {
                   int ids = certify.getId();
                   Student student = store.getStudent(ids);
-                  /*System.out.println("updated record " + student.getJava() + " " + student.getDsa() + " "
-                          + student.getDatabases() + " "
-                          + student.getSpring());*/
                   System.out.println("Points updated.");
                }
             }

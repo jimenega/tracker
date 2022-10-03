@@ -36,7 +36,6 @@ public class Interface {
             String command0 = normalized.get(0).toLowerCase();
             String command1 = null;
             if(normalized.size() == 2) command1 = normalized.get(1).toLowerCase();
-
             switch (command0) {
                 case "students" :
                 case "points" :

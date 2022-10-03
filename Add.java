@@ -8,7 +8,6 @@ public class Add implements Command{
     public String getName() {
         return this.name;
     }
-
     public void execute() {
         Interface.commandLevel = 1;
     }
@@ -16,12 +15,10 @@ public class Add implements Command{
         if(cmd1.equals("students")) studentsCtrl();
         else if(cmd1.equals("points")) pointsCtrl();
     }
-
     void studentsCtrl() {
         Dialog studentDialog = new Dialog("students");
         studentDialog.getStudent();
     }
-
     void pointsCtrl() {
         Dialog pointsDialog = new Dialog("points");
         pointsDialog.getPoints();
