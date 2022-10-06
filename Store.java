@@ -67,7 +67,7 @@ public class Store {
         }
         return pointsStored;
     }
-    private boolean isIdExist(int id) {
+    public boolean isIdExist(int id) {
         return dbMap.containsKey(id);
     }
     public Student getStudent(int id) {

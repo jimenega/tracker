@@ -34,7 +34,7 @@ public class Certify {
         int errorCode = 0;
         if(rawCopy.size() == 1 && !rawCopy.get(0).equalsIgnoreCase("back")) {
             errorCode = 101;
-            System.out.println("Incorrect credentials.");
+            //System.out.println("Incorrect points format.");  // changed from: "incorrect credentials"
         } else if(rawCopy.size() != 5 ) {
             errorCode = 102;
         }
@@ -54,7 +54,8 @@ public class Certify {
             assign();
             return true;
         } else {
-            return false;
+             System.out.println("Incorrect points format.");  // changed from: "incorrect credentials"
+             return false;
         }
     }
 }
