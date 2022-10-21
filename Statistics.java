@@ -98,6 +98,7 @@ public class Statistics implements Command {
                 } else {
                     printCourseDetails();
                     initializePointsMap();
+                    Calculations calculations = new Calculations(pointsMap);
                 }
             }
         }
