@@ -1,29 +1,42 @@
 package tracker;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.regex.Pattern;
-public class Find implements Command {
+//import java.util.regex.Pattern;
+public class Statistics implements Command {
     Store store;
+    List<String> courses = List.of("java","dsa", "databases", "spring");
     private final Scanner scanner = new Scanner(System.in);
-    String name = "find";
-    Find(){
-        Interface.activeCommand = RESERVED.find;
+    String name = "statistics";
+    Statistics(){
+        Interface.activeCommand = RESERVED.statistics;
         this.store = Store.getInstance();
     }
     public String getName() {
         return this.name;
     }
-    private boolean inputChecks(List<String> rawInput) {
-        boolean checksPass = false;
-        if (rawInput.size() == 1) {
-            checksPass = true;
-        }
-        return checksPass;
+    private void printCategories() {
+        System.out.println("Most popular: " + "n/a");
+        System.out.println("Least popular: " + "n/a");
+        System.out.println("Highest activity: " + "n/a");
+        System.out.println("Lowest activity: " + "n/a");
+        System.out.println("Easiest course: " + "n/a");
+        System.out.println("Hardest course: " + "n/a");
     }
-    private int matchInput(List<String> rawInput) {
+
+    private void printCourseDetails() {
+        System.out.println("id" + "   " + "points" + "   " + "completed");
+    }
+
+    private boolean validateCourse(List<String> rawInput) {
+        return courses.contains(rawInput.get(0).toLowerCase());
+    }
+    private boolean inputChecks(List<String> rawInput) {
+        return rawInput.size() == 1;
+    }
+    /*private int matchInput(List<String> rawInput) {
         List<String> rawCopy = new ArrayList<>(rawInput);
         int id = 0;
         String rawCopyString = rawCopy.toString()
@@ -31,43 +44,46 @@ public class Find implements Command {
                 .replaceAll("]","");
         boolean matches = Pattern.matches("[^-]\\d*", rawCopyString);
         if (matches) {
-           id = Integer.parseInt(rawCopy.get(0));
+            id = Integer.parseInt(rawCopy.get(0));
         }
         return id;
-    }
+    }*/
     public void console() {
-        System.out.println("Enter an id or 'back' to return:");
+        System.out.println("Type the name of a course to see details or 'back' to quit:");
+        printCategories();
         while (true) {
             List<String> rawInput = Arrays.asList(scanner.nextLine().split("\\s+"));
 
             if (!inputChecks(rawInput)) {
-                System.out.println("Incorrect format");
+                System.out.println("Unknown course");
                 continue;
             }
             if (rawInput.isEmpty() || rawInput.get(0).equals("")) {
-                System.out.println("Incorrect points format. - getPoints()");
+                System.out.println("Statistics::console is Empty");
                 continue;
             }
             if (rawInput.get(0).equalsIgnoreCase("back") && (rawInput.size() == 1)) {
                 new Back();
                 break;
             }  else {
-                int id = matchInput(rawInput);
+                /*int id = matchInput(rawInput);
                 Student student = store.getStudent(id);
                 if(student != null) {
                     System.out.println(id + " points:"
                             + " Java=" + student.getJava()
                             + "; DSA=" + student.getDsa()
                             + "; Databases=" + student.getDatabases()
-                            + "; Spring=" + student.getSpring());
+                            + "; Spring=" + student.getSpring());*/
+                if (!validateCourse(rawInput)) {
+                    System.out.println("Unknown course");
+                    //continue;
                 } else {
-                    System.out.printf("No student is found for id=%d.%n", id);
+                    printCourseDetails();
                 }
             }
         }
     }
     public void execute() {
-        //System.out.println("Find::execute - Enter an id or 'back' to return:");
         console();
     }
 }

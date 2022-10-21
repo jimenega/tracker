@@ -59,6 +59,15 @@ public class Interface {
                     activeCommand = Command.RESERVED.find;
                     new Find().execute();
                     break;
+                case "statistics" :
+                    if(normalized.size() > 1) {
+                        Message.unknownCommand_M();
+                        break;
+                    }
+                    commandLevel = 0;
+                    activeCommand = Command.RESERVED.statistics;
+                    new Statistics().execute();
+                    break;
                 case "exit" :
                     if(normalized.size() > 1) {
                         Message.unknownCommand_M();
