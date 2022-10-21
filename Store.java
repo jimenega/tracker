@@ -8,6 +8,11 @@ public class Store {
     private Map<Integer, Student> dbMap = new HashMap<>();
     private Store() {
     }
+
+    public Set<Integer> getKeySet() {
+        return dbMap.keySet();
+    }
+
     public static Store getInstance() {
         // create object if it's not already created
         if (dbObject == null) {

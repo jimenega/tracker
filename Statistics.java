@@ -1,13 +1,14 @@
 package tracker;
 
 //import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+
 //import java.util.regex.Pattern;
 public class Statistics implements Command {
     Store store;
     List<String> courses = List.of("java","dsa", "databases", "spring");
+
+    private final Map<Integer, List<Integer>> pointsMap = new HashMap<>();
     private final Scanner scanner = new Scanner(System.in);
     String name = "statistics";
     Statistics(){
@@ -17,6 +18,23 @@ public class Statistics implements Command {
     public String getName() {
         return this.name;
     }
+
+    private void initializePointsMap() {
+        //List<Integer> pointsList = new ArrayList<>();
+        Set<Integer> keySet = store.getKeySet();
+        System.out.println(keySet.toString());
+        for (Integer i : keySet) {
+            pointsMap.put(i, new ArrayList<>());
+        }
+        for (Integer i : keySet) {
+            pointsMap.get(i).add(store.getStudent(i).getJava());
+            pointsMap.get(i).add(store.getStudent(i).getDsa());
+            pointsMap.get(i).add(store.getStudent(i).getDatabases());
+            pointsMap.get(i).add(store.getStudent(i).getSpring());
+        }
+        System.out.println(pointsMap.values());
+    }
+
     private void printCategories() {
         System.out.println("Most popular: " + "n/a");
         System.out.println("Least popular: " + "n/a");
@@ -79,6 +97,7 @@ public class Statistics implements Command {
                     //continue;
                 } else {
                     printCourseDetails();
+                    initializePointsMap();
                 }
             }
         }
