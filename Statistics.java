@@ -23,14 +23,14 @@ public class Statistics implements Command {
         //List<Integer> pointsList = new ArrayList<>();
         Set<Integer> keySet = store.getKeySet();
         System.out.println(keySet.toString());
-        for (Integer i : keySet) {
-            pointsMap.put(i, new ArrayList<>());
+        for (Integer studentId : keySet) {
+            pointsMap.put(studentId, new ArrayList<>());
         }
-        for (Integer i : keySet) {
-            pointsMap.get(i).add(store.getStudent(i).getJava());
-            pointsMap.get(i).add(store.getStudent(i).getDsa());
-            pointsMap.get(i).add(store.getStudent(i).getDatabases());
-            pointsMap.get(i).add(store.getStudent(i).getSpring());
+        for (Integer studentId : keySet) {
+            pointsMap.get(studentId).add(store.getStudent(studentId).getJava());
+            pointsMap.get(studentId).add(store.getStudent(studentId).getDsa());
+            pointsMap.get(studentId).add(store.getStudent(studentId).getDatabases());
+            pointsMap.get(studentId).add(store.getStudent(studentId).getSpring());
         }
         System.out.println(pointsMap.values());
     }
