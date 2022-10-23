@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Calculations {
-    int Java = 0; int DSA = 1; int Database = 2; int Spring = 3;
-    enum languages {Java, DSA, Database, Spring}
+    int Java = 0; int DSA = 1; int Databases = 2; int Spring = 3;
+    enum languages {Java, DSA, Databases, Spring}
 
     private final int JAVA_REQUIRED = 600;
     private final int DSA_REQUIRED = 400;
@@ -30,17 +30,25 @@ public class Calculations {
     private final Map<Integer, List<Integer>> pointsMap;
     public Calculations(Map<Integer, List<Integer>> pointsMap) {
         this.pointsMap = pointsMap;
-        System.out.println("Calculations follow:");
-        System.out.println(pointsMap.toString());
-
-        //todo: EXPERIMENTAL
         for (languages language : languages.values()) {
             enrolled(language);
         }
-        System.out.println("JAVA_ENROLLED count: " + JAVA_ENROLLED);
-        System.out.println("DSA_ENROLLED count: " + DSA_ENROLLED);
-        System.out.println("DATABASES_ENROLLED count: " + DATABASES_ENROLLED);
-        System.out.println("SPRING_ENROLLED count: " + SPRING_ENROLLED);
+    }
+
+    protected void printCourseDetails(String language) {
+        if ("java".equalsIgnoreCase(language)) System.out.println("Java");
+        if ("dsa".equalsIgnoreCase(language)) System.out.println("DSA");
+        if ("databases".equalsIgnoreCase(language)) System.out.println("Databases");
+        if ("spring".equalsIgnoreCase(language)) System.out.println("Spring");
+        System.out.println("id" + "   " + "points" + "   " + "completed");
+    }
+    protected void printCategories() {
+        System.out.println("Most popular: " + "n/a");
+        System.out.println("Least popular: " + "n/a");
+        System.out.println("Highest activity: " + "n/a");
+        System.out.println("Lowest activity: " + "n/a");
+        System.out.println("Easiest course: " + "n/a");
+        System.out.println("Hardest course: " + "n/a");
     }
     private void enrolled(languages language) {  //todo: impacted - Experimental
         for (Integer studentId : pointsMap.keySet()) {
@@ -52,7 +60,7 @@ public class Calculations {
                 DSA_ENROLLED++;
             }
 
-            if (language.equals(languages.Database) && !pointsMap.get(studentId).get(Database).equals(0)) {
+            if (language.equals(languages.Databases) && !pointsMap.get(studentId).get(Databases).equals(0)) {
                 DATABASES_ENROLLED++;
             }
 

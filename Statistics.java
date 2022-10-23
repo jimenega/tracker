@@ -14,13 +14,14 @@ public class Statistics implements Command {
     Statistics(){
         Interface.activeCommand = RESERVED.statistics;
         this.store = Store.getInstance();
+        initializePointsMap();
+
     }
     public String getName() {
         return this.name;
     }
 
     private void initializePointsMap() {
-        //List<Integer> pointsList = new ArrayList<>();
         Set<Integer> keySet = store.getKeySet();
         System.out.println(keySet.toString());
         for (Integer studentId : keySet) {
@@ -35,18 +36,18 @@ public class Statistics implements Command {
         System.out.println(pointsMap.values());
     }
 
-    private void printCategories() {
+    /*private void printCategories() {
         System.out.println("Most popular: " + "n/a");
         System.out.println("Least popular: " + "n/a");
         System.out.println("Highest activity: " + "n/a");
         System.out.println("Lowest activity: " + "n/a");
         System.out.println("Easiest course: " + "n/a");
         System.out.println("Hardest course: " + "n/a");
-    }
+    }*/
 
-    private void printCourseDetails() {
+    /*private void printCourseDetails() {
         System.out.println("id" + "   " + "points" + "   " + "completed");
-    }
+    }*/
 
     private boolean validateCourse(List<String> rawInput) {
         return courses.contains(rawInput.get(0).toLowerCase());
@@ -67,8 +68,9 @@ public class Statistics implements Command {
         return id;
     }*/
     public void console() {
+        Calculations calculations = new Calculations(pointsMap);
         System.out.println("Type the name of a course to see details or 'back' to quit:");
-        printCategories();
+        calculations.printCategories();
         while (true) {
             List<String> rawInput = Arrays.asList(scanner.nextLine().split("\\s+"));
 
@@ -96,9 +98,11 @@ public class Statistics implements Command {
                     System.out.println("Unknown course");
                     //continue;
                 } else {
-                    printCourseDetails();
-                    initializePointsMap();
-                    Calculations calculations = new Calculations(pointsMap);
+                    //printCourseDetails();
+                    //initializePointsMap();
+                    //calculations = new Calculations(pointsMap);
+                    calculations.printCourseDetails(rawInput.get(0));
+
                 }
             }
         }
