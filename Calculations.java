@@ -2,26 +2,21 @@ package tracker;
 
 import java.util.List;
 import java.util.Map;
-
 public class Calculations {
     int Java = 0; int DSA = 1; int Databases = 2; int Spring = 3;
     enum languages {Java, DSA, Databases, Spring}
-
     private final int JAVA_REQUIRED = 600;
     private final int DSA_REQUIRED = 400;
     private final int DATABASES_REQUIRED = 480;
     private final int SPRING_REQUIRED = 550;
-
     private int JAVA_ENROLLED;
     private int DSA_ENROLLED;
     private int DATABASES_ENROLLED;
     private int SPRING_ENROLLED;
-
     private int JAVA_SUBMISSIONS;
     private int DSA_SUBMISSIONS;
     private int DATABASES_SUBMISSIONS;
     private int SPRING_SUBMISSIONS;
-
     private int JAVA_AVERAGE;
     private int DSA_AVERAGE;
     private int DATABASES_AVERAGE;
@@ -30,17 +25,16 @@ public class Calculations {
     private final Map<Integer, List<Integer>> pointsMap;
     public Calculations(Map<Integer, List<Integer>> pointsMap) {
         this.pointsMap = pointsMap;
-        for (languages language : languages.values()) {
-            enrolled(language);
-        }
+        initializeEnrolled();
     }
-
     protected void printCourseDetails(String language) {
         if ("java".equalsIgnoreCase(language)) System.out.println("Java");
         if ("dsa".equalsIgnoreCase(language)) System.out.println("DSA");
         if ("databases".equalsIgnoreCase(language)) System.out.println("Databases");
         if ("spring".equalsIgnoreCase(language)) System.out.println("Spring");
         System.out.println("id" + "   " + "points" + "   " + "completed");
+        System.out.println("Enrolled: " + JAVA_ENROLLED + " " + DSA_ENROLLED +
+                            " " + DATABASES_ENROLLED + " " + SPRING_ENROLLED);
     }
     protected void printCategories() {
         System.out.println("Most popular: " + "n/a");
@@ -50,22 +44,21 @@ public class Calculations {
         System.out.println("Easiest course: " + "n/a");
         System.out.println("Hardest course: " + "n/a");
     }
-    private void enrolled(languages language) {  //todo: impacted - Experimental
-        for (Integer studentId : pointsMap.keySet()) {
-            if ( language.equals(languages.Java) && !pointsMap.get(studentId).get(Java).equals(0)) {
-                JAVA_ENROLLED++;
-            }
-
-            if (language.equals(languages.DSA) && !pointsMap.get(studentId).get(DSA).equals(0)) {
-                DSA_ENROLLED++;
-            }
-
-            if (language.equals(languages.Databases) && !pointsMap.get(studentId).get(Databases).equals(0)) {
-                DATABASES_ENROLLED++;
-            }
-
-            if (language.equals(languages.Spring) && !pointsMap.get(studentId).get(Spring).equals(0)) {
-                SPRING_ENROLLED++;
+    private void initializeEnrolled() {
+        for (languages language : languages.values()) {
+            for (Integer studentId : pointsMap.keySet()) {
+                if (language.equals(languages.Java) && !pointsMap.get(studentId).get(Java).equals(0)) {
+                    JAVA_ENROLLED++;
+                }
+                if (language.equals(languages.DSA) && !pointsMap.get(studentId).get(DSA).equals(0)) {
+                    DSA_ENROLLED++;
+                }
+                if (language.equals(languages.Databases) && !pointsMap.get(studentId).get(Databases).equals(0)) {
+                    DATABASES_ENROLLED++;
+                }
+                if (language.equals(languages.Spring) && !pointsMap.get(studentId).get(Spring).equals(0)) {
+                    SPRING_ENROLLED++;
+                }
             }
         }
     }
