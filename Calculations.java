@@ -21,12 +21,8 @@ public class Calculations {
     private int DSA_AVERAGE;
     private int DATABASES_AVERAGE;
     private int SPRING_AVERAGE;
-
     private final Map<Integer, List<Integer>> pointsMap;
-
-    //todo: new pointSubmissionList - sent by statistics
     Map<Integer, List<Integer>> pointsSubmissionList;
-
     public Calculations(Map<Integer, List<Integer>> pointsMap, Map<Integer, List<Integer>> pointsSubmissionList) {
         this.pointsMap = pointsMap;
         this.pointsSubmissionList = pointsSubmissionList;

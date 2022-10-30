@@ -36,7 +36,6 @@ public class Statistics implements Command {
         return rawInput.size() == 1;
     }
     public void console() {
-        //todo: Added new parameter to Calculations: getPointSubmission
         Calculations calculations = new Calculations(pointsMap, store.getPointSubmissionList());
         System.out.println("Type the name of a course to see details or 'back' to quit:");
         calculations.printCategories();

@@ -45,16 +45,12 @@ public class Dialog {
       System.out.println("Enter an id and points or 'back' to return:");
       while (true) {
          List<String> rawInput = Arrays.asList(scanner.nextLine().split("\\s+"));
-
-         //todo: new here
          boolean matches  = rawInput.get(0).matches("[^-]\\d*");
          boolean idExist;
-
          if (rawInput.isEmpty() || rawInput.get(0).equals("")) {
             System.out.println("Incorrect points format. - getPoints()");
             continue;
          }
-
          if (rawInput.get(0).equalsIgnoreCase("back") && (rawInput.size() == 1)) {
             new Back();
             break;
@@ -69,7 +65,6 @@ public class Dialog {
                System.out.printf("No student is found for id=%s.%n", rawInput.get(0));
                continue;
             }
-
             Certify certify = new Certify(rawInput);
             if (certify.run()) {
                if (store.tryStorePoints(certify)) {

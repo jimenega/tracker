@@ -4,27 +4,18 @@ import java.util.*;
 public class Store {
     private static Store dbObject;
     private int id = 10000;  // student id
-
-    //todo: new submission counter
-    private  int submissionNumber = 0;
+    private  int submissionNumber = 1;
     private Student currentStudent;
     private final Map<Integer, Student> dbMap = new HashMap<>();
-
     public Map<Integer, List<Integer>> getPointSubmissionList() {
         return pointSubmissionList;
     }
-
-    //todo: new List to hold actual student point entries.
-    // as they happen - history log.  This will be used in Statistics calculations.
     private final Map<Integer, List<Integer>> pointSubmissionList = new HashMap<>();
-
     private Store() {
     }
-
     public Set<Integer> getKeySet() {
         return dbMap.keySet();
     }
-
     public static Store getInstance() {
         // create object if it's not already created
         if (dbObject == null) {
@@ -77,7 +68,6 @@ public class Store {
             student.setDsa(student.getDsa() + certify.getDsa());
             student.setDatabase(student.getDatabases() + certify.getDatabase());
             student.setSpring(student.getSpring() + certify.getSpring());
-            //todo: new List for individual submissions to be used in Statistics calculations
             pointSubmissionList.put(submissionNumber,
                                     List.of(certify.getJava(),
                                             certify.getDsa(),
@@ -85,7 +75,6 @@ public class Store {
                                             certify.getSpring(),
                                             currentId));
             submissionNumber++;
-            //todo: end new
             pointsStored = true;
         } else {
             System.out.printf("No student is found for id:%d.%n", currentId);
