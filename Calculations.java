@@ -22,10 +22,10 @@ public class Calculations {
     private int DATABASES_AVERAGE;
     private int SPRING_AVERAGE;
     private final Map<Integer, List<Integer>> pointsMap;
-    Map<Integer, List<Integer>> pointsSubmissionList;
+    Map<Integer, List<Integer>> pointSubmissionList;
     public Calculations(Map<Integer, List<Integer>> pointsMap, Map<Integer, List<Integer>> pointsSubmissionList) {
         this.pointsMap = pointsMap;
-        this.pointsSubmissionList = pointsSubmissionList;
+        this.pointSubmissionList = pointsSubmissionList;
         initializeEnrolled();
     }
     protected void printCourseDetails(String language) {
@@ -80,8 +80,8 @@ public class Calculations {
         /*for (Integer i : pointsMap.keySet()) {
             System.out.println(i + " " + pointsMap.get(i).get(Java));
         }*/
-        for (Integer i : pointsSubmissionList.keySet()) {
-            System.out.println("points submission List for: " + i + " " + pointsSubmissionList.get(i));
+        for (Integer i : pointSubmissionList.keySet()) {
+            System.out.println("points submission List for: " + i + " " + pointSubmissionList.get(i));
         }
     }
 }
