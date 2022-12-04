@@ -37,8 +37,8 @@ public class Statistics implements Command {
     }
     public void console() {
         Calculations calculations = new Calculations(pointsMap, store.getPointSubmissionList());
-        System.out.println("Type the name of a course to see details or 'back' to quit:");
-        calculations.printCategories();
+        //System.out.println("Type the name of a course to see details or 'back' to quit:");
+        //calculations.printCategories();
         while (true) {
             List<String> rawInput = Arrays.asList(scanner.nextLine().split("\\s+"));
 
@@ -58,8 +58,8 @@ public class Statistics implements Command {
                     System.out.println("Unknown course");
                     //continue;
                 } else {
-                    calculations.printCourseDetails(rawInput.get(0));
-                    calculations.topLearner();
+                    //calculations.printCourseDetails(rawInput.get(0));
+                    calculations.topLearners(String.valueOf(rawInput.get(0)));
                 }
             }
         }
