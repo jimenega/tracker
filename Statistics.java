@@ -17,7 +17,7 @@ public class Statistics implements Command {
     }
     private void initializePointsMap() {
         Set<Integer> keySet = store.getKeySet();
-        System.out.println(keySet.toString());
+        //System.out.println(keySet.toString());
         for (Integer studentId : keySet) {
             pointsMap.put(studentId, new ArrayList<>());
         }
@@ -27,7 +27,7 @@ public class Statistics implements Command {
             pointsMap.get(studentId).add(store.getStudent(studentId).getDatabases());
             pointsMap.get(studentId).add(store.getStudent(studentId).getSpring());
         }
-        System.out.println(pointsMap.values());
+        //System.out.println(pointsMap.values());
     }
     private boolean validateCourse(List<String> rawInput) {
         return courses.contains(rawInput.get(0).toLowerCase());
