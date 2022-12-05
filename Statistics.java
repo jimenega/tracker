@@ -27,7 +27,6 @@ public class Statistics implements Command {
             pointsMap.get(studentId).add(store.getStudent(studentId).getDatabases());
             pointsMap.get(studentId).add(store.getStudent(studentId).getSpring());
         }
-        //System.out.println(pointsMap.values());
     }
     private boolean validateCourse(List<String> rawInput) {
         return courses.contains(rawInput.get(0).toLowerCase());
@@ -37,8 +36,6 @@ public class Statistics implements Command {
     }
     public void console() {
         Calculations calculations = new Calculations(pointsMap, store.getPointSubmissionList());
-        //System.out.println("Type the name of a course to see details or 'back' to quit:");
-        //calculations.printCategories();
         while (true) {
             List<String> rawInput = Arrays.asList(scanner.nextLine().split("\\s+"));
 
@@ -56,9 +53,7 @@ public class Statistics implements Command {
             }  else {
                 if (!validateCourse(rawInput)) {
                     System.out.println("Unknown course");
-                    //continue;
                 } else {
-                    //calculations.printCourseDetails(rawInput.get(0));
                     calculations.topLearners(String.valueOf(rawInput.get(0)));
                 }
             }

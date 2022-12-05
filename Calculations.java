@@ -39,11 +39,7 @@ public class Calculations {
             initializeCourseAverage();
             category = true;
         }
-        categoriesPrint(category);          //todo - remove temps
-        //topLearners("java");        //temp
-        //topLearners("dsa");         //temp
-        //topLearners("databases");   //temp
-        //topLearners("spring");      //temp
+        categoriesPrint(category);
     }
 
     private void initializeEnrolled() {
@@ -107,7 +103,6 @@ public class Calculations {
         for (Results result : resultsList) {
             System.out.println(result.toString());
         }
-        //System.out.println();
     }
 
     protected void topLearners(String language) {  //protected
@@ -223,7 +218,6 @@ public class Calculations {
                     .replace("]", ""));
             System.out.println("Hardest course: "   + complexity.get(1).toString().replace("[","")
                     .replace("]", ""));
-            //System.out.println();
         } else {
             System.out.println("Most popular: n/a");
             System.out.println("Least popular: n/a");
@@ -231,7 +225,6 @@ public class Calculations {
             System.out.println("Lowest activity: n/a");
             System.out.println("Easiest course: n/a");
             System.out.println("Hardest course: n/a");
-            //System.out.println();
         }
     }
 }

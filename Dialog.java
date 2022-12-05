@@ -68,8 +68,6 @@ public class Dialog {
             Certify certify = new Certify(rawInput);
             if (certify.run()) {
                if (store.tryStorePoints(certify)) {
-                  int ids = certify.getId();
-                  Student student = store.getStudent(ids);
                   System.out.println("Points updated.");
                }
             }

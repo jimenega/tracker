@@ -17,11 +17,9 @@ public class Store {
         return dbMap.keySet();
     }
     public static Store getInstance() {
-        // create object if it's not already created
         if (dbObject == null) {
             dbObject = new Store();
         }
-        // returns the singleton object
         return dbObject;
     }
     private void idIncrement() {
