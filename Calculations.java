@@ -161,14 +161,21 @@ public class Calculations {
                 value_max = Math.max(value, value_max);
                 value_min = Math.min(value, value_min);
         }
-        if(java_value == value_max) high_list.add(languages.Java);
-        if(dsa_value == value_max) high_list.add(languages.DSA);
-        if(databases_value == value_max) high_list.add(languages.Databases);
-        if(spring_value == value_max) high_list.add(languages.Spring);
-        if(java_value == value_min) low_list.add(languages.Java);
-        if(dsa_value == value_min) low_list.add(languages.DSA);
-        if(databases_value == value_min) low_list.add(languages.Databases);
-        if(spring_value == value_min) low_list.add(languages.Spring);
+        if(value_max == value_min) {    // high_list gets all courses
+            high_list.add(languages.Java);
+            high_list.add(languages.DSA);
+            high_list.add(languages.Databases);
+            high_list.add(languages.Spring);
+        } else {
+            if (java_value == value_max) high_list.add(languages.Java);
+            if (dsa_value == value_max) high_list.add(languages.DSA);
+            if (databases_value == value_max) high_list.add(languages.Databases);
+            if (spring_value == value_max) high_list.add(languages.Spring);
+            if (java_value == value_min) low_list.add(languages.Java);
+            if (dsa_value == value_min) low_list.add(languages.DSA);
+            if (databases_value == value_min) low_list.add(languages.Databases);
+            if (spring_value == value_min) low_list.add(languages.Spring);
+        }
         return List.of(high_list, low_list);
     }
 
@@ -188,8 +195,15 @@ public class Calculations {
                 bd_min = bd_min.min(value);
             }
         }
-        complexityAddToList(course_average_map, easiest_course_list, bd_max);
-        complexityAddToList(course_average_map, hardest_course_list, bd_min);
+        if(bd_max.equals(bd_min)) {    // high_list gets all courses
+            easiest_course_list.add(languages.Java);
+            easiest_course_list.add(languages.DSA);
+            easiest_course_list.add(languages.Databases);
+            easiest_course_list.add(languages.Spring);
+        } else {
+            complexityAddToList(course_average_map, easiest_course_list, bd_max);
+            complexityAddToList(course_average_map, hardest_course_list, bd_min);
+        }
         return List.of(easiest_course_list, hardest_course_list);
     }
 
@@ -204,20 +218,34 @@ public class Calculations {
         List<List<languages>> popularity = popularity();
         List<List<languages>> activity = activity();
         List<List<languages>> complexity = complexity();
+
+        String na = "n/a";
+        String popularityHigh = popularity.get(0).toString().replace("[","")
+                                                            .replace("]", "");
+        String popularityLow = popularity.get(1).toString().replace("[","")
+                                                            .replace("]", "");
+        String activityHigh = activity.get(0).toString().replace("[","")
+                                                        .replace("]", "");
+        String activityLow = activity.get(1).toString().replace("[","")
+                                                        .replace("]", "");
+        String complexityLow = complexity.get(0).toString().replace("[","")
+                                                        .replace("]", "");
+        String complexityHigh = complexity.get(1).toString().replace("[","")
+                                                            .replace("]", "");
+
+        // covers case of value_max == value_min
+        if(popularity.get(1).size() == 0) popularityLow = na;
+        if(activity.get(1).size() == 0) activityLow = na;
+        if(complexity.get(1).size() == 0) complexityHigh = na;
+
         System.out.println("Type the name of a course to see details or 'back' to quit:");
         if (category) {
-            System.out.println("Most popular: "     + popularity.get(0).toString().replace("[","")
-                    .replace("]", ""));
-            System.out.println("Least popular: "    + popularity.get(1).toString().replace("[","")
-                    .replace("]", ""));
-            System.out.println("Highest activity: " + activity.get(0).toString().replace("[","")
-                    .replace("]", ""));
-            System.out.println("Lowest activity: "  + activity.get(1).toString().replace("[","")
-                    .replace("]", ""));
-            System.out.println("Easiest course: "   + complexity.get(0).toString().replace("[","")
-                    .replace("]", ""));
-            System.out.println("Hardest course: "   + complexity.get(1).toString().replace("[","")
-                    .replace("]", ""));
+            System.out.println("Most popular: "     + popularityHigh);
+            System.out.println("Least popular: "    + popularityLow);
+            System.out.println("Highest activity: " + activityHigh);
+            System.out.println("Lowest activity: "  + activityLow);
+            System.out.println("Easiest course: "   + complexityLow);
+            System.out.println("Hardest course: "   + complexityHigh);
         } else {
             System.out.println("Most popular: n/a");
             System.out.println("Least popular: n/a");
