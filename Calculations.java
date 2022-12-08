@@ -105,7 +105,7 @@ public class Calculations {
         }
     }
 
-    protected void topLearners(String language) {  //protected
+    protected void topLearners(String language) {
         int languageIndex;
         int requiredPoints;
         language  = language.toLowerCase();
