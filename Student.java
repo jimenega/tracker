@@ -1,6 +1,8 @@
 package tracker;
 
+import java.util.ArrayList;
 import java.util.List;
+
 public class Student {
     private String firstName;
     private String lastName;
@@ -9,6 +11,11 @@ public class Student {
     private int dsa;
     private int database;
     private int spring;
+
+    //new: completed & notified - use to store notification state
+    private final List<Boolean>  completed = List.of(false, false, false, false);
+    private final List<Boolean> notified = List.of(false, false, false, false);
+
     Student() {
     }
     public String getFirstName() {
@@ -54,5 +61,13 @@ public class Student {
     }
     public void setSpring(int spring) {
         this.spring = spring;
+    }
+    //new: return completed
+    public List<Boolean> getCompleted() {
+        return completed;
+    }
+    //new: return notified
+    public List<Boolean> getNotified() {
+        return notified;
     }
 }

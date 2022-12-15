@@ -68,6 +68,15 @@ public class Interface {
                     activeCommand = Command.RESERVED.statistics;
                     new Statistics().execute();
                     break;
+                case "notify" :
+                    if(normalized.size() > 1) {
+                        Message.unknownCommand_M();
+                        break;
+                    }
+                    commandLevel = 0;
+                    activeCommand = Command.RESERVED.notify;
+                    new Notify().execute();
+                    break;
                 case "exit" :
                     if(normalized.size() > 1) {
                         Message.unknownCommand_M();
