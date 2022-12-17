@@ -11,13 +11,26 @@ public class Student {
     private int dsa;
     private int database;
     private int spring;
-
     //new: completed & notified - use to store notification state
-    private final List<Boolean>  completed = List.of(false, false, false, false);
+    private final List<Boolean>  completed = new ArrayList<>();
+
     private final List<Boolean> notified = List.of(false, false, false, false);
 
     Student() {
+        initializeCompleted();
     }
+    private void initializeCompleted() {
+        Boolean java = false;
+        Boolean dsa = false;
+        Boolean databases = false;
+        Boolean spring = false;
+        completed.add(java);
+        completed.add(dsa);
+        completed.add(databases);
+        completed.add(spring);
+
+    }
+
     public String getFirstName() {
         return firstName;
     }
