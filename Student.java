@@ -13,13 +13,11 @@ public class Student {
     private int spring;
     //new: completed & notified - use to store notification state
     private final List<Boolean>  completed = new ArrayList<>();
-
-    private final List<Boolean> notified = List.of(false, false, false, false);
-
+    private final List<Boolean> notified = new ArrayList<>();
     Student() {
-        initializeCompleted();
+        initializeCompletedNotified();
     }
-    private void initializeCompleted() {
+    private void initializeCompletedNotified() {
         Boolean java = false;
         Boolean dsa = false;
         Boolean databases = false;
@@ -28,7 +26,10 @@ public class Student {
         completed.add(dsa);
         completed.add(databases);
         completed.add(spring);
-
+        notified.add(java);
+        notified.add(dsa);
+        notified.add(databases);
+        notified.add(spring);
     }
 
     public String getFirstName() {
@@ -79,7 +80,6 @@ public class Student {
     public List<Boolean> getCompleted() {
         return completed;
     }
-    //new: return notified
     public List<Boolean> getNotified() {
         return notified;
     }

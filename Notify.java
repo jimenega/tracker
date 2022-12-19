@@ -5,10 +5,10 @@ import java.util.*;
 public class Notify implements Command{
     String name = "notify";
     Store store;
-
-    private enum languages {Java, DSA, Databases, Spring}
+    //private enum languages {Java, DSA, Databases, Spring}
+    int Java = 0, DSA = 1, Databases = 2, Spring = 3;
     List<Boolean> completed;
-    //List<Boolean> notified;
+    List<Boolean> notified;
     public String getName() {
         return this.name;
     }
@@ -36,8 +36,9 @@ public class Notify implements Command{
 
     private void message() {
         //Write message template here
-        String wholeName;
-        String email;
+        System.out.println("Notify - send letter now!");
+        /*String wholeName = null;
+        String email = null;
         System.out.println("pointsMap: " + pointsMap);
         System.out.println("keySet: " + keySet);
         for(int k : keySet) {
@@ -45,15 +46,22 @@ public class Notify implements Command{
             email = store.getStudent(k).getEmail();
             System.out.println(wholeName + " " + email);
         }
+        System.out.println(wholeName);
+        StringBuilder letter = new StringBuilder("To: ");
+        letter.append(email).append("\n")
+                .append("Re: Your Learning Progress\n")
+                .append("Hello, ").append(wholeName)
+                .append("!")
+                .append("You have accomplished 0ur " + "COURSE goes here");
+        System.out.println(letter);*/
     }
 
     private void checkCompleted(List<Integer> value) {
         // Initiate checks on all students that have completed courses and set them completed.
-        int java = 0, DSA = 1, Databases = 2, Spring = 3;
         int JAVA_REQUIRED = 600, DSA_REQUIRED = 400, DATABASES_REQUIRED = 480, SPRING_REQUIRED = 550;
 
-        if(value.get(java) >= JAVA_REQUIRED) {
-            completed.set(java, true);
+        if(value.get(Java) >= JAVA_REQUIRED) {
+            completed.set(Java, true);
         }
         if(value.get(DSA) >= DSA_REQUIRED) {
             completed.set(DSA, true);
@@ -66,29 +74,56 @@ public class Notify implements Command{
             completed.set(Spring, true);
         }
     }
-    private void processNotify(int id, int course, Boolean setTo) {
+    private void processNotify() {
         // Once notification of completion has been sent, set the appropriate class for the student as notified.
         // This will prevent repeated notifications for the same class.
-        System.out.println("id " + id + "  course " + course + "  setTo " + setTo);
-
+        //System.out.println("id " + id + "  course " + course + "  setTo " + setTo);
         //store.getStudent(id).getCompleted().set(course, setTo);    //completed.set(id, setTo);
         //System.out.println("completed: " + completed);
+        message();
+
     }
 
     public void console() {
+        int notified_count = 0;
         System.out.println("Notify - all graduates");
-        //Set<Map.Entry<Integer, List<Integer>>> me = pointsMap.entrySet();
         for (Map.Entry<Integer, List<Integer>> entry : pointsMap.entrySet()) {
+            System.out.println("*** check COMPLETED ***");
             System.out.println("key: " + entry.getKey() + " value: " + entry.getValue());
             completed =  store.getStudent(entry.getKey()).getCompleted();
-
-            System.out.println("completed: " + completed);
-            //List<Boolean> notified =  store.getStudent(id.getKey()).getNotified();
-            //System.out.println("notified: " + notified);
+            //notified =  store.getStudent(entry.getKey()).getNotified();
             checkCompleted(entry.getValue());
             System.out.println("completed: " + completed);
-
         }
+
+        for (int key : keySet) {
+            System.out.println("*** NOTIFY and SET NOTIFY TO TRUE ***");
+            completed = store.getStudent(key).getCompleted();
+            notified = store.getStudent(key).getNotified();
+            if(completed.get(Java).equals(true) && notified.get(Java).equals(false)) {
+                processNotify();
+                notified.set(Java, true);
+                System.out.println("notify " + notified);
+            }
+            if(completed.get(DSA).equals(true) && notified.get(DSA).equals(false)) {
+                processNotify();
+                notified.set(DSA, true);
+                System.out.println("notify " + notified);
+            }
+            if(completed.get(Databases).equals(true) && notified.get(Databases).equals(false)) {
+                processNotify();
+                notified.set(Databases, true);
+                System.out.println("notify " + notified);
+            }
+            if(completed.get(Spring).equals(true) && notified.get(Spring).equals(false)) {
+                processNotify();
+                notified.set(Spring, true);
+                System.out.println("notify " + notified);
+            }
+            notified_count++;
+        }
+        System.out.printf("Total %d students have been notified.\n", notified_count);
+        notified_count = 0;
     }
     public void execute() {
         console();
@@ -100,3 +135,7 @@ public class Notify implements Command{
         }*/
 //if(value.get(Java) >= JAVA_REQUIRED) processNotify(id, Java, true );
 //private final Map<Integer, List<Integer>> pointSubmissionList;
+//Set<Map.Entry<Integer, List<Integer>>> me = pointsMap.entrySet();
+
+
+
